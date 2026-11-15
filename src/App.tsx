@@ -63,7 +63,7 @@ PURCHASE_STATUS=1`;
         <header className="mb-8 border-b border-slate-800 pb-6">
           <div className="flex items-center gap-3 text-emerald-400 text-sm font-semibold mb-2">
             <Rocket className="h-4 w-4" />
-            <span>DTLive v2.1 • Ready to Push</span>
+            <span>ZuLive • com.zulive.app • Ready to Push</span>
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-white">
             Railway Backend + GitHub Actions APK Setup
@@ -148,8 +148,8 @@ PURCHASE_STATUS=1`;
                 <code className="text-violet-300">ANDROID_STORE_PASSWORD</code>.
               </li>
               <li>
-                Open <strong>Actions → Build DTLive Android APK → Run workflow</strong> and download the
-                APK artifact.
+                Open <strong>Actions → Build ZuLive Android APK → Run workflow</strong> and download the
+                APK artifact (<code className="text-violet-300">zulive-android-apk</code>).
               </li>
             </ol>
           </section>
@@ -170,9 +170,9 @@ PURCHASE_STATUS=1`;
               <li className="flex items-start gap-2">
                 <Terminal className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
                 <span>
-                  Change <code className="text-amber-200">applicationId</code> in{' '}
-                  <code className="text-amber-200">flutter_app/android/app/build.gradle.kts</code> and
-                  replace Firebase config files before Play Store publishing.
+                  Android <code className="text-amber-200">applicationId</code> is set to{' '}
+                  <code className="text-amber-200">com.zulive.app</code> — add it with your APK SHA-1 in
+                  Firebase Console and replace Firebase config files before release.
                 </span>
               </li>
             </ul>

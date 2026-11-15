@@ -124,9 +124,9 @@
             @if(env('DEMO_MODE') == 'ON')
                 <div class="dl-footer">
                     <span class="dl-footer-label">Powered by</span>
-                    <a class="dl-dt-mark" href="https://divinetechs.com" target="_blank" rel="noopener" title="DivineTechs">
-                        <span class="dl-dt-name">DivineTechs • All rights reserved.</span>
-                    </a>
+                    <span class="dl-dt-mark" title="{{ App_Name() }}">
+                        <span class="dl-dt-name">{{ App_Name() }} • All rights reserved.</span>
+                    </span>
                 </div>
             @endif
         </div>

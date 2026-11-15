@@ -14,7 +14,7 @@
     <meta property="og:image" content="{{ $image }}">
     <meta property="og:url" content="{{ $url }}">
     <meta property="og:type" content="video.other">
-    <meta property="og:site_name" content="DTLive">
+    <meta property="og:site_name" content="{{ App_Name() }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 

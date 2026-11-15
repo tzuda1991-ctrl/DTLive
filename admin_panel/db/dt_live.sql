@@ -249,15 +249,15 @@ CREATE TABLE `tbl_general_setting` (
 --
 
 INSERT INTO `tbl_general_setting` (`id`, `key`, `value`, `created_at`, `updated_at`) VALUES
-(1, 'app_name', 'DTLive', '2022-08-03 12:38:42', '2026-05-11 11:49:54'),
+(1, 'app_name', 'ZuLive', '2022-08-03 12:38:42', '2026-05-11 11:49:54'),
 (2, 'app_version', '2.1', '2022-08-03 12:38:42', '2026-05-11 11:49:55'),
 (3, 'app_logo_storage_type', '1', '2025-02-21 11:14:03', '2025-09-02 07:16:29'),
 (4, 'app_logo', 'app_2026_05_04_69f85f62664ef.png', '2022-08-03 12:38:42', '2026-05-04 08:57:06'),
-(5, 'app_desripation', 'Divinetechs is an IT company specializing in providing technology solutions and services. The company likely focuses on various aspects of IT, such as software development, web and mobile app development, IT consulting, cloud solutions, and possibly more. Divinetechs aims to leverage technology to drive business growth and efficiency for its clients, offering innovative and customized solutions tailored to meet specific business needs.', '2022-08-03 12:38:42', '2024-08-28 17:02:20'),
-(6, 'author', 'DivineTechs', '2022-08-03 12:38:42', '2024-03-23 05:00:59'),
-(7, 'email', 'support@divinetechs.com', '2022-08-03 12:38:42', '2023-07-03 04:57:48'),
+(5, 'app_desripation', 'ZuLive is an OTT streaming platform for movies, live TV, shows, and short-form video.', '2022-08-03 12:38:42', '2024-08-28 17:02:20'),
+(6, 'author', 'ZuLive', '2022-08-03 12:38:42', '2024-03-23 05:00:59'),
+(7, 'email', 'support@zulive.app', '2022-08-03 12:38:42', '2023-07-03 04:57:48'),
 (8, 'contact', '917984798190', '2022-08-03 12:38:42', '2023-07-03 04:57:48'),
-(9, 'website', 'https://www.divinetechs.com', '2022-08-03 12:38:42', '2026-02-25 17:02:33'),
+(9, 'website', 'https://zulive.app', '2022-08-03 12:38:42', '2026-02-25 17:02:33'),
 (10, 'currency', 'USD', '2022-08-03 12:38:42', '2026-05-11 12:16:03'),
 (11, 'currency_code', '$', '2022-08-03 12:38:42', '2026-05-11 12:16:04'),
 (12, 'onesignal_app_id', '', '2022-08-03 12:38:42', '2026-05-11 12:16:44'),
@@ -311,7 +311,7 @@ INSERT INTO `tbl_general_setting` (`id`, `key`, `value`, `created_at`, `updated_
 (60, 'vdocipher_status', '0', '2025-09-05 05:24:23', '2025-09-05 08:38:04'),
 (61, 'vdocipher_api_secret_key', '', '2025-09-05 05:24:23', '2025-09-05 08:40:14'),
 (62, 'web_client_id', '', '2025-10-06 06:28:08', '2026-05-11 12:16:34'),
-(63, 'playstore_url', 'https://play.google.com/store/apps/details?id=com.divinetechs.dtlive', '2026-02-25 12:25:45', '2026-02-25 17:03:13'),
+(63, 'playstore_url', 'https://play.google.com/store/apps/details?id=com.zulive.app', '2026-02-25 12:25:45', '2026-02-25 17:03:13'),
 (64, 'appstore_url', 'https://testflight.apple.com/join/NrPgK6wi', '2026-02-25 12:25:45', '2026-02-25 17:03:13'),
 (65, 'refer_and_earn_status', '0', '2026-03-23 04:51:16', '2026-05-11 12:17:05'),
 (66, 'parent_user_earn', '0', '2026-03-23 04:51:26', '2026-05-11 12:17:07'),
@@ -765,7 +765,7 @@ CREATE TABLE `tbl_smtp_setting` (
 --
 
 INSERT INTO `tbl_smtp_setting` (`id`, `protocol`, `host`, `port`, `user`, `pass`, `from_name`, `from_email`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'smtp123', 'smtp.gmail.com', '587', 'admin@admin.com', 'admin', 'DTLive-DivineTechs', 'admin@admin.com', 0, '2022-08-03 10:14:04', '2026-05-11 12:28:44');
+(1, 'smtp123', 'smtp.gmail.com', '587', 'admin@admin.com', 'admin', 'ZuLive', 'admin@admin.com', 0, '2022-08-03 10:14:04', '2026-05-11 12:28:44');
 
 -- --------------------------------------------------------
 

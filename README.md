@@ -1,4 +1,4 @@
-# DTLive v2.1 — Railway + GitHub Actions Setup
+# ZuLive — Railway + GitHub Actions Setup
 
 This repository is structured for **Railway** (Laravel Admin Panel + API + MySQL) and **GitHub Actions** (Flutter Android APK builds).
 
@@ -46,6 +46,6 @@ This repository is structured for **Railway** (Laravel Admin Panel + API + MySQL
      - `ANDROID_KEY_ALIAS`
      - `ANDROID_KEY_PASSWORD`
      - `ANDROID_STORE_PASSWORD`
-2. Before Play Store release, also update `flutter_app/android/app/build.gradle.kts` (`applicationId`) and replace `flutter_app/android/app/google-services.json` + `flutter_app/lib/firebase_options.dart` with your own Firebase project files.
-3. Go to GitHub → **Actions → Build DTLive Android APK → Run workflow** (or push to `flutter_app/`).
-4. Download the generated APK from the workflow run's **Artifacts** (`dtlive-android-apk`).
+2. Package name is configured as `com.zulive.app` (`flutter_app/android/app/build.gradle.kts`). Before Play Store release, replace `flutter_app/android/app/google-services.json` and `flutter_app/lib/firebase_options.dart` with your own Firebase project files (and add your APK SHA-1 fingerprint for Google Sign-In).
+3. Go to GitHub → **Actions → Build ZuLive Android APK → Run workflow** (or push to `flutter_app/`).
+4. Download the generated APK from the workflow run's **Artifacts** (`zulive-android-apk`).

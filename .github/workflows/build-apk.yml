@@ -1,4 +1,4 @@
-name: Build DTLive Android APK
+name: Build ZuLive Android APK
 
 concurrency:
   group: build-apk-${{ github.ref }}
@@ -136,7 +136,7 @@ jobs:
         if: ${{ (github.event.inputs.build_type || 'apk') != 'appbundle' }}
         uses: actions/upload-artifact@v4
         with:
-          name: dtlive-android-apk
+          name: zulive-android-apk
           path: flutter_app/build/app/outputs/flutter-apk/*.apk
           retention-days: 30
 
@@ -144,6 +144,6 @@ jobs:
         if: ${{ github.event.inputs.build_type == 'appbundle' || github.event.inputs.build_type == 'both' }}
         uses: actions/upload-artifact@v4
         with:
-          name: dtlive-android-aab
+          name: zulive-android-aab
           path: flutter_app/build/app/outputs/bundle/release/*.aab
           retention-days: 30

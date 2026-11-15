@@ -11,9 +11,9 @@ class Constant {
     defaultValue: 'DTLdcFLx12g5MIGu7deMJIJQTD56qcZx',
   );
 
-  static String appName = "yourappname";
+  static String appName = "ZuLive";
   static String appPackageName =
-      "com.example.yourappname"; // This is used for PIP channel
+      "com.zulive.app"; // This is used for PIP channel
   static String appleAppId = ""; // This is used for Appstore iOS App redirect
   static String appVersion = "";
 

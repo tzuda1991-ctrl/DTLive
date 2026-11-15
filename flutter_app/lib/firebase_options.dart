@@ -67,7 +67,7 @@ class DefaultFirebaseOptions {
         '946063364931-0tvpgi5e3p1h4joss2kso187lolk2qen.apps.googleusercontent.com',
     iosClientId:
         '946063364931-mf45cskfiqtc63namugb7n5usvgm8vkq.apps.googleusercontent.com',
-    iosBundleId: 'com.example.yourappname',
+    iosBundleId: 'com.zulive.app',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -80,7 +80,7 @@ class DefaultFirebaseOptions {
         '946063364931-0tvpgi5e3p1h4joss2kso187lolk2qen.apps.googleusercontent.com',
     iosClientId:
         '946063364931-mf45cskfiqtc63namugb7n5usvgm8vkq.apps.googleusercontent.com',
-    iosBundleId: 'com.example.yourappname',
+    iosBundleId: 'com.zulive.app',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(

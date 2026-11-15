@@ -4,7 +4,7 @@
         "details": [
             {
                 "appIDs": [
-                    "Apple_App_Id.com.example.yourappname"
+                    "Apple_App_Id.com.zulive.app"
                 ],
                 "paths": [
                     "*"
@@ -19,7 +19,7 @@
     },
     "webcredentials": {
         "apps": [
-            "Apple_App_Id.com.example.yourappname"
+            "Apple_App_Id.com.zulive.app"
         ]
     }
 }

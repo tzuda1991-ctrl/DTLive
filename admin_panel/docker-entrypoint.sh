@@ -64,6 +64,7 @@ set_env() {
   ' "$key" "$val"
 }
 
+set_env "APP_NAME" "${APP_NAME:-ZuLive}"
 set_env "APP_ENV" "$APP_ENV_VAL"
 set_env "APP_DEBUG" "$APP_DEBUG_VAL"
 set_env "APP_URL" "$APP_URL_VAL"
@@ -138,7 +139,19 @@ if [ "${AUTO_IMPORT_DB:-true}" = "true" ] && [ -f db/dt_live.sql ]; then
           ' "$DB_HOST_VAL" "$DB_PORT_VAL" "$DB_DATABASE_VAL" "$DB_USERNAME_VAL" "$DB_PASSWORD_VAL"
         echo "[dtlive] Database import complete."
       else
-        echo "[dtlive] Database already initialized (tbl_admin exists)."
+        echo "[zulive] Database already initialized (tbl_admin exists). Applying ZuLive branding defaults if needed..."
+        php -r '
+          $pdo = new PDO(
+            "mysql:host=" . $argv[1] . ";port=" . $argv[2] . ";dbname=" . $argv[3] . ";charset=utf8mb4",
+            $argv[4],
+            $argv[5]
+          );
+          $pdo->exec("UPDATE tbl_general_setting SET value = \"ZuLive\", updated_at = NOW() WHERE `key` = \"app_name\" AND value IN (\"DTLive\", \"yourappname\", \"\")");
+          $pdo->exec("UPDATE tbl_general_setting SET value = \"ZuLive\", updated_at = NOW() WHERE `key` = \"author\" AND value = \"DivineTechs\"");
+          $pdo->exec("UPDATE tbl_general_setting SET value = \"ZuLive OTT Streaming Platform\", updated_at = NOW() WHERE `key` = \"app_desripation\" AND value LIKE \"Divinetechs is an IT company%\"");
+          $pdo->exec("UPDATE tbl_general_setting SET value = \"https://play.google.com/store/apps/details?id=com.zulive.app\", updated_at = NOW() WHERE `key` = \"playstore_url\" AND value LIKE \"%com.divinetechs.dtlive%\"");
+          $pdo->exec("UPDATE tbl_smtp_setting SET from_name = \"ZuLive\", updated_at = NOW() WHERE from_name = \"DTLive-DivineTechs\"");
+        ' "$DB_HOST_VAL" "$DB_PORT_VAL" "$DB_DATABASE_VAL" "$DB_USERNAME_VAL" "$DB_PASSWORD_VAL" || true
       fi
       break
     fi

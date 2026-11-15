@@ -77,9 +77,9 @@
         @if(env('DEMO_MODE') == 'ON')
             <div class="lpp-footer">
                 <span class="lpp-footer-label">Powered by</span>
-                <a class="lpp-dt-mark" href="https://divinetechs.com" target="_blank" rel="noopener" title="DivineTechs">
-                    <span class="lpp-dt-name">DivineTechs • All rights reserved.</span>
-                </a>
+                <span class="lpp-dt-mark" title="{{ App_Name() }}">
+                    <span class="lpp-dt-name">{{ App_Name() }} • All rights reserved.</span>
+                </span>
             </div>
         @endif            
     </div>
