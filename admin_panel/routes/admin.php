@@ -46,6 +46,7 @@ use App\Http\Controllers\Admin\ShortsController;
 use App\Http\Controllers\Admin\WithdrawalController;
 use App\Http\Controllers\Admin\WalletTransactionController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\YouTubeImporterController;
 
 Route::group(['middleware' => 'installation'], function () {
 
@@ -144,6 +145,11 @@ Route::group(['middleware' => 'installation'], function () {
         Route::post('shorts-episode/update/{id}', [ShortsController::class, 'ShortsUpdate'])->name('shorts.episode.update');
         Route::post('shorts-episode/sortable', [ShortsController::class, 'ShortsSortable'])->name('shorts.episode.sortable');
         Route::get('shorts-episode/status', [ShortsController::class, 'ShortsEpisodeStatus'])->name('shorts.episode.status');
+        // YouTube Bulk Importer
+        Route::get('youtube-importer', [YouTubeImporterController::class, 'index'])->name('youtube.importer');
+        Route::post('youtube-importer/save-key', [YouTubeImporterController::class, 'saveApiKey'])->name('youtube.savekey');
+        Route::post('youtube-importer/fetch', [YouTubeImporterController::class, 'fetch'])->name('youtube.fetch');
+        Route::post('youtube-importer/import', [YouTubeImporterController::class, 'import'])->name('youtube.import');
         // Notification
         Route::resource('notification', NotificationController::class)->only(['index', 'store']);
         // Reviews & Ratings

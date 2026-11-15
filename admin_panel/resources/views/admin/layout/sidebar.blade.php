@@ -157,6 +157,13 @@
             @endif
         @endforeach
 
+        <li class="side_line {{ request()->routeIs('admin.youtube.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.youtube.importer') }}">
+                <i class="fa-brands fa-youtube fa-xl menu-icon"></i>
+                <span>YouTube Importer</span>
+            </a>
+        </li>
+
         <p class="partition"><span>{{__('label.interaction')}}</span></p>
         <li class="side_line {{ request()->routeIs('admin.notification.*') ? 'active' : '' }}">
             <a href="{{ route('admin.notification.index') }}">
