@@ -25,7 +25,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         bcmath \
         intl \
         curl \
-    && a2enmod rewrite headers alias \
+    && a2dismod mpm_event mpm_worker || true \
+    && a2enmod mpm_prefork rewrite headers alias \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer

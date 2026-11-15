@@ -151,6 +151,10 @@ php artisan config:clear --no-interaction || true
 php artisan route:clear --no-interaction || true
 php artisan view:clear --no-interaction || true
 
+# Ensure only one Apache MPM (mpm_prefork) is enabled
+rm -f /etc/apache2/mods-enabled/mpm_event.* /etc/apache2/mods-enabled/mpm_worker.*
+a2enmod mpm_prefork >/dev/null 2>&1 || true
+
 # Configure Apache to listen on Railway $PORT (defaults to 8080)
 PORT_VAL="${PORT:-8080}"
 sed -ri "s/Listen 80/Listen ${PORT_VAL}/g" /etc/apache2/ports.conf
