@@ -53,14 +53,14 @@ try {
     if ($tableCount('tbl_category') === 0) {
         $stmt = $pdo->prepare("INSERT INTO tbl_category (id, name, storage_type, image, sort_order, status) VALUES (?, ?, 1, ?, ?, 1)");
         $cats = [
-            [1, 'Action',      'cat_action.jpg',   1],
-            [2, 'Thriller',    'cat_thriller.jpg', 2],
-            [3, 'Comedy',      'cat_comedy.jpg',   3],
-            [4, 'Drama',       'cat_drama.jpg',    4],
-            [5, 'Sci-Fi',      'cat_scifi.jpg',    5],
-            [6, 'Romance',     'cat_romance.jpg',  6],
-            [7, 'Documentary', 'cat_doc.jpg',      7],
-            [8, 'Kids',        'cat_kids.jpg',     8],
+            [1, 'Action',      'zrcat_action.jpg',   1],
+            [2, 'Thriller',    'zrcat_thriller.jpg', 2],
+            [3, 'Comedy',      'zrcat_comedy.jpg',   3],
+            [4, 'Drama',       'zrcat_drama.jpg',    4],
+            [5, 'Sci-Fi',      'zrcat_scifi.jpg',    5],
+            [6, 'Romance',     'zrcat_romance.jpg',  6],
+            [7, 'Documentary', 'zrcat_doc.jpg',      7],
+            [8, 'Kids',        'zrcat_kids.jpg',     8],
         ];
         foreach ($cats as $c) {
             $stmt->execute($c);
@@ -71,11 +71,11 @@ try {
     if ($tableCount('tbl_language') === 0) {
         $stmt = $pdo->prepare("INSERT INTO tbl_language (id, name, storage_type, image, sort_order, status) VALUES (?, ?, 1, ?, ?, 1)");
         $langs = [
-            [1, 'Hindi',    'lang_hi.jpg', 1],
-            [2, 'English',  'lang_en.jpg', 2],
-            [3, 'Tamil',    'lang_ta.jpg', 3],
-            [4, 'Telugu',   'lang_te.jpg', 4],
-            [5, 'Gujarati', 'lang_gu.jpg', 5],
+            [1, 'Hindi',    'zrlang_hi.jpg', 1],
+            [2, 'English',  'zrlang_en.jpg', 2],
+            [3, 'Tamil',    'zrlang_ta.jpg', 3],
+            [4, 'Telugu',   'zrlang_te.jpg', 4],
+            [5, 'Gujarati', 'zrlang_gu.jpg', 5],
         ];
         foreach ($langs as $l) {
             $stmt->execute($l);
@@ -86,12 +86,12 @@ try {
     if ($tableCount('tbl_cast') === 0) {
         $stmt = $pdo->prepare("INSERT INTO tbl_cast (id, name, storage_type, image, type, personal_info, status) VALUES (?, ?, 1, ?, ?, ?, 1)");
         $casts = [
-            [1, 'Aarav Kapoor',    'cast1.jpg', 'Actor',    'Versatile lead actor known for high-octane action thrillers and ZuLive Originals.'],
-            [2, 'Meera Nair',      'cast2.jpg', 'Actress',  'Critically acclaimed actress celebrated across Hindi, Tamil, and Malayalam cinema.'],
-            [3, 'Vikram Rathore',  'cast3.jpg', 'Director', 'Filmmaker specializing in neo-noir sci-fi dramas and gripping mystery series.'],
-            [4, 'Priya Sharma',    'cast4.jpg', 'Actress',  'Breakout OTT star featured in romantic dramas and crime anthologies.'],
-            [5, 'Kabir Malhotra',  'cast5.jpg', 'Actor',    'Character actor bringing depth to espionage thrillers and comedy series.'],
-            [6, 'Ananya Deshmukh', 'cast6.jpg', 'Director', 'Showrunner and creator behind ZuLive flagship original productions.'],
+            [1, 'Aarav Kapoor',    'zrcast1.jpg', 'Actor',    'Versatile lead actor known for high-octane action thrillers and ZuLive Originals.'],
+            [2, 'Meera Nair',      'zrcast2.jpg', 'Actress',  'Critically acclaimed actress celebrated across Hindi, Tamil, and Malayalam cinema.'],
+            [3, 'Vikram Rathore',  'zrcast3.jpg', 'Director', 'Filmmaker specializing in neo-noir sci-fi dramas and gripping mystery series.'],
+            [4, 'Priya Sharma',    'zrcast4.jpg', 'Actress',  'Breakout OTT star featured in romantic dramas and crime anthologies.'],
+            [5, 'Kabir Malhotra',  'zrcast5.jpg', 'Actor',    'Character actor bringing depth to espionage thrillers and comedy series.'],
+            [6, 'Ananya Deshmukh', 'zrcast6.jpg', 'Director', 'Showrunner and creator behind ZuLive flagship original productions.'],
         ];
         foreach ($casts as $c) {
             $stmt->execute($c);
@@ -102,10 +102,10 @@ try {
     if ($tableCount('tbl_channel') === 0) {
         $stmt = $pdo->prepare("INSERT INTO tbl_channel (id, name, storage_type, portrait_img, landscape_img, is_title, status) VALUES (?, ?, 1, ?, ?, 1, 1)");
         $channels = [
-            [1, 'ZuLive Cinema HD',  'ch1_p.jpg', 'ch1_l.jpg'],
-            [2, 'ZuLive Action+',    'ch2_p.jpg', 'ch2_l.jpg'],
-            [3, 'ZuLive Kids Club',  'ch3_p.jpg', 'ch3_l.jpg'],
-            [4, 'ZuLive News 24x7',  'ch4_p.jpg', 'ch4_l.jpg'],
+            [1, 'ZuLive Cinema HD',  'zrch1_p.jpg', 'zrch1_l.jpg'],
+            [2, 'ZuLive Action+',    'zrch2_p.jpg', 'zrch2_l.jpg'],
+            [3, 'ZuLive Kids Club',  'zrch3_p.jpg', 'zrch3_l.jpg'],
+            [4, 'ZuLive News 24x7',  'zrch4_p.jpg', 'zrch4_l.jpg'],
         ];
         foreach ($channels as $ch) {
             $stmt->execute($ch);
@@ -116,7 +116,7 @@ try {
     if ($tableCount('tbl_avatar') === 0) {
         $stmt = $pdo->prepare("INSERT INTO tbl_avatar (id, name, storage_type, image, sort_order, status) VALUES (?, ?, 1, ?, ?, 1)");
         for ($i = 1; $i <= 6; $i++) {
-            $stmt->execute([$i, "Avatar $i", "av{$i}.jpg", $i]);
+            $stmt->execute([$i, "Avatar $i", "zrav{$i}.jpg", $i]);
         }
     }
 
@@ -124,9 +124,9 @@ try {
     if ($tableCount('tbl_onboarding_screen') === 0) {
         $stmt = $pdo->prepare("INSERT INTO tbl_onboarding_screen (id, title, storage_type, image, description, status) VALUES (?, ?, 1, ?, ?, 1)");
         $screens = [
-            [1, 'Stream Blockbusters & Live TV', 'onboard1.jpg', 'Watch HD movies, original web series, and 24x7 live channels anytime on ZuLive.'],
-            [2, 'Bite-Sized ZuLive Shorts',     'onboard2.jpg', 'Discover fast vertical micro-dramas, comedy clips, and curated reels in seconds.'],
-            [3, 'Flexible Plans in ₹ (INR)',    'onboard3.jpg', 'Start free or upgrade with affordable INR plans, promo coupons, and instant rentals.'],
+            [1, 'Stream Blockbusters & Live TV', 'zronboard1.jpg', 'Watch HD movies, original web series, and 24x7 live channels anytime on ZuLive.'],
+            [2, 'Bite-Sized ZuLive Shorts',     'zronboard2.jpg', 'Discover fast vertical micro-dramas, comedy clips, and curated reels in seconds.'],
+            [3, 'Flexible Plans in ₹ (INR)',    'zronboard3.jpg', 'Start free or upgrade with affordable INR plans, promo coupons, and instant rentals.'],
         ];
         foreach ($screens as $s) {
             $stmt->execute($s);
@@ -269,26 +269,26 @@ try {
 
         $videos = [
             // Movies (type_id=1, video_type=1)
-            [1, 1, 1, 1, '1,5',   '1,2',   '1,2,3', 'Sintel: The Dragon Quest', 'seed_m1_p.jpg', 'seed_m1_l.jpg', 'A lone warrior travels across treacherous lands in search of a lost baby dragon. Watch free in HD on ZuLive.', 'external', $vSintel, $vSintel, $vSintel, $vSintel, 'mp4', 88000, $vSintelTr, '2026-01-15', 0, 1, 0, 0, 0, 4.8, 12, 18450, 1420],
-            [2, 1, 1, 1, '1,2,5', '1,2,3', '1,3,5', 'Tears of Steel',           'seed_m2_p.jpg', 'seed_m2_l.jpg', 'In a futuristic Amsterdam, elite warriors unite to save humanity from rogue cybernetics. ZuLive VIP Exclusive.', 'external', $vHlsTears, $vHlsTears, $vHlsTears, $vHlsTears, 'm3u8', 734000, $vSintelTr, '2026-02-20', 1, 1, 0, 0, 0, 4.9, 18, 24100, 2150],
-            [3, 1, 1, 2, '2,4',   '1,2',   '1,4,5', 'Midnight Protocol',        'seed_m3_p.jpg', 'seed_m3_l.jpg', 'An intelligence analyst races against the clock after uncovering a classified blackout plot. Available on Rent ₹99.', 'external', $vHlsMux, $vHlsMux, $vHlsMux, $vHlsMux, 'm3u8', 596000, $vBunnyTr, '2026-03-10', 0, 1, 1, 2, 7, 4.7, 9, 15200, 1180],
-            [4, 1, 1, 2, '2,7',   '1,2,4', '2,5,6', 'Shadow Signal',            'seed_m4_p.jpg', 'seed_m4_l.jpg', 'Strange deep-space radio transmissions spark an unforgettable mystery thriller. Stream free or download offline.', 'external', $vMovie300, $vMovie300, $vMovie300, $vMovie300, 'mp4', 120000, $vSintelTr, '2026-03-28', 0, 1, 0, 0, 0, 4.5, 7, 9840, 760],
-            [5, 1, 1, 1, '1,5',   '1,2,3', '1,2,6', 'Cyber Horizon',            'seed_m5_p.jpg', 'seed_m5_l.jpg', 'A renegade pilot enters the orbital ring to rescue lost colonists. Rent for ₹149 with 14-day access.', 'external', $vHlsTears, $vHlsTears, $vHlsTears, $vHlsTears, 'm3u8', 720000, $vSintelTr, '2026-04-05', 0, 1, 1, 3, 14, 4.6, 11, 12900, 990],
-            [6, 1, 1, 1, '4,6',   '1,5',   '2,4',   'Monsoon Symphony',         'seed_m6_p.jpg', 'seed_m6_l.jpg', 'Two musicians cross paths in Mumbai during the monsoon season in this heartwarming musical drama.', 'external', $vBunny, $vBunny, $vBunny, $vBunny, 'mp4', 596000, $vBunnyTr, '2026-04-18', 0, 1, 0, 0, 0, 4.7, 14, 16300, 1540],
+            [1, 1, 1, 1, '1,5',   '1,2',   '1,2,3', 'Sintel: The Dragon Quest', 'zr_m1_p.jpg', 'zr_m1_l.jpg', 'A lone warrior travels across treacherous lands in search of a lost baby dragon. Watch free in HD on ZuLive.', 'external', $vSintel, $vSintel, $vSintel, $vSintel, 'mp4', 88000, $vSintelTr, '2026-01-15', 0, 1, 0, 0, 0, 4.8, 12, 18450, 1420],
+            [2, 1, 1, 1, '1,2,5', '1,2,3', '1,3,5', 'Tears of Steel',           'zr_m2_p.jpg', 'zr_m2_l.jpg', 'In a futuristic Amsterdam, elite warriors unite to save humanity from rogue cybernetics. ZuLive VIP Exclusive.', 'external', $vHlsTears, $vHlsTears, $vHlsTears, $vHlsTears, 'm3u8', 734000, $vSintelTr, '2026-02-20', 1, 1, 0, 0, 0, 4.9, 18, 24100, 2150],
+            [3, 1, 1, 2, '2,4',   '1,2',   '1,4,5', 'Midnight Protocol',        'zr_m3_p.jpg', 'zr_m3_l.jpg', 'An intelligence analyst races against the clock after uncovering a classified blackout plot. Available on Rent ₹99.', 'external', $vHlsMux, $vHlsMux, $vHlsMux, $vHlsMux, 'm3u8', 596000, $vBunnyTr, '2026-03-10', 0, 1, 1, 2, 7, 4.7, 9, 15200, 1180],
+            [4, 1, 1, 2, '2,7',   '1,2,4', '2,5,6', 'Shadow Signal',            'zr_m4_p.jpg', 'zr_m4_l.jpg', 'Strange deep-space radio transmissions spark an unforgettable mystery thriller. Stream free or download offline.', 'external', $vMovie300, $vMovie300, $vMovie300, $vMovie300, 'mp4', 120000, $vSintelTr, '2026-03-28', 0, 1, 0, 0, 0, 4.5, 7, 9840, 760],
+            [5, 1, 1, 1, '1,5',   '1,2,3', '1,2,6', 'Cyber Horizon',            'zr_m5_p.jpg', 'zr_m5_l.jpg', 'A renegade pilot enters the orbital ring to rescue lost colonists. Rent for ₹149 with 14-day access.', 'external', $vHlsTears, $vHlsTears, $vHlsTears, $vHlsTears, 'm3u8', 720000, $vSintelTr, '2026-04-05', 0, 1, 1, 3, 14, 4.6, 11, 12900, 990],
+            [6, 1, 1, 1, '4,6',   '1,5',   '2,4',   'Monsoon Symphony',         'zr_m6_p.jpg', 'zr_m6_l.jpg', 'Two musicians cross paths in Mumbai during the monsoon season in this heartwarming musical drama.', 'external', $vBunny, $vBunny, $vBunny, $vBunny, 'mp4', 596000, $vBunnyTr, '2026-04-18', 0, 1, 0, 0, 0, 4.7, 14, 16300, 1540],
 
             // Upcoming Trailers (type_id=1, video_type=5)
-            [7, 1, 5, 1, '1,5', '1,2', '1,3', 'Solaris Rising', 'seed_u1_p.jpg', 'seed_u1_l.jpg', 'Upcoming sci-fi spectacle arriving soon exclusively on ZuLive. Watch the official teaser now.', 'external', $vSintelTr, $vSintelTr, $vSintelTr, $vSintelTr, 'mp4', 52000, $vSintelTr, '2026-12-20', 0, 0, 0, 0, 0, 4.9, 5, 8400, 910],
-            [8, 1, 5, 2, '1,2', '1,4', '2,5', 'Neon Express',   'seed_u2_p.jpg', 'seed_u2_l.jpg', 'An unstoppable midnight train hurtles across India in this upcoming heist thriller.', 'external', $vBunnyTr, $vBunnyTr, $vBunnyTr, $vBunnyTr, 'mp4', 33000, $vBunnyTr, '2026-12-28', 0, 0, 0, 0, 0, 4.8, 4, 6200, 640],
+            [7, 1, 5, 1, '1,5', '1,2', '1,3', 'Solaris Rising', 'zr_u1_p.jpg', 'zr_u1_l.jpg', 'Upcoming sci-fi spectacle arriving soon exclusively on ZuLive. Watch the official teaser now.', 'external', $vSintelTr, $vSintelTr, $vSintelTr, $vSintelTr, 'mp4', 52000, $vSintelTr, '2026-12-20', 0, 0, 0, 0, 0, 4.9, 5, 8400, 910],
+            [8, 1, 5, 2, '1,2', '1,4', '2,5', 'Neon Express',   'zr_u2_p.jpg', 'zr_u2_l.jpg', 'An unstoppable midnight train hurtles across India in this upcoming heist thriller.', 'external', $vBunnyTr, $vBunnyTr, $vBunnyTr, $vBunnyTr, 'mp4', 33000, $vBunnyTr, '2026-12-28', 0, 0, 0, 0, 0, 4.8, 4, 6200, 640],
 
             // Live TV Streams (type_id=3, video_type=6)
-            [9,  3, 6, 1, '1,4', '1,2', '1,2', 'ZuLive Cinema 24x7 Live', 'seed_l1_p.jpg', 'seed_l1_l.jpg', 'Non-stop HD cinema showcase streaming 24 hours a day on ZuLive Cinema.', 'live_stream_url', $vHlsMux, $vHlsMux, $vHlsMux, $vHlsMux, 'm3u8', 0, $vSintelTr, '2026-05-01', 0, 0, 0, 0, 0, 4.8, 6, 31200, 2900],
-            [10, 3, 6, 2, '1,2', '1,2', '1,5', 'Action Pulse Live TV',    'seed_l2_p.jpg', 'seed_l2_l.jpg', 'Live action blockbusters, stunts, and behind-the-scenes specials all day.', 'live_stream_url', $vHlsTears, $vHlsTears, $vHlsTears, $vHlsTears, 'm3u8', 0, $vSintelTr, '2026-05-01', 0, 0, 0, 0, 0, 4.6, 4, 19800, 1750],
-            [11, 3, 6, 3, '3,8', '1,2', '4,6', 'Kids Toon Live Stream',   'seed_l3_p.jpg', 'seed_l3_l.jpg', 'Safe, cheerful, kid-friendly cartoons and educational shows live 24x7.', 'live_stream_url', $vHlsApple, $vHlsApple, $vHlsApple, $vHlsApple, 'm3u8', 0, $vBunnyTr, '2026-05-01', 0, 0, 0, 0, 0, 4.9, 8, 22400, 2100],
+            [9,  3, 6, 1, '1,4', '1,2', '1,2', 'ZuLive Cinema 24x7 Live', 'zr_l1_p.jpg', 'zr_l1_l.jpg', 'Non-stop HD cinema showcase streaming 24 hours a day on ZuLive Cinema.', 'live_stream_url', $vHlsMux, $vHlsMux, $vHlsMux, $vHlsMux, 'm3u8', 0, $vSintelTr, '2026-05-01', 0, 0, 0, 0, 0, 4.8, 6, 31200, 2900],
+            [10, 3, 6, 2, '1,2', '1,2', '1,5', 'Action Pulse Live TV',    'zr_l2_p.jpg', 'zr_l2_l.jpg', 'Live action blockbusters, stunts, and behind-the-scenes specials all day.', 'live_stream_url', $vHlsTears, $vHlsTears, $vHlsTears, $vHlsTears, 'm3u8', 0, $vSintelTr, '2026-05-01', 0, 0, 0, 0, 0, 4.6, 4, 19800, 1750],
+            [11, 3, 6, 3, '3,8', '1,2', '4,6', 'Kids Toon Live Stream',   'zr_l3_p.jpg', 'zr_l3_l.jpg', 'Safe, cheerful, kid-friendly cartoons and educational shows live 24x7.', 'live_stream_url', $vHlsApple, $vHlsApple, $vHlsApple, $vHlsApple, 'm3u8', 0, $vBunnyTr, '2026-05-01', 0, 0, 0, 0, 0, 4.9, 8, 22400, 2100],
 
             // Kids Movies (type_id=4, video_type=7)
-            [12, 4, 7, 3, '3,8', '1,2,5', '4,6', 'Big Buck Bunny',      'seed_k1_p.jpg', 'seed_k1_l.jpg', 'A giant, lovable rabbit teaches three mischievous forest critters a playful lesson.', 'external', $vBunny, $vBunny, $vBunny, $vBunny, 'mp4', 596000, $vBunnyTr, '2026-01-10', 0, 1, 0, 0, 0, 4.9, 20, 41500, 3800],
-            [13, 4, 7, 3, '7,8', '1,2',   '4',   'Honeybee Adventure',  'seed_k2_p.jpg', 'seed_k2_l.jpg', 'Follow a curious little honeybee exploring blooming summer meadows.', 'external', $vBee, $vBee, $vBee, $vBee, 'mp4', 15000, $vBee, '2026-02-14', 0, 1, 0, 0, 0, 4.7, 9, 14300, 1290],
-            [14, 4, 7, 3, '7,8', '1,2',   '6',   'Butterfly Garden',    'seed_k3_p.jpg', 'seed_k3_l.jpg', 'Colorful butterflies dance through an enchanted forest in this soothing kids classic.', 'external', $vFly, $vFly, $vFly, $vFly, 'mp4', 18000, $vFly, '2026-03-02', 0, 1, 0, 0, 0, 4.8, 11, 16900, 1620],
+            [12, 4, 7, 3, '3,8', '1,2,5', '4,6', 'Big Buck Bunny',      'zr_k1_p.jpg', 'zr_k1_l.jpg', 'A giant, lovable rabbit teaches three mischievous forest critters a playful lesson.', 'external', $vBunny, $vBunny, $vBunny, $vBunny, 'mp4', 596000, $vBunnyTr, '2026-01-10', 0, 1, 0, 0, 0, 4.9, 20, 41500, 3800],
+            [13, 4, 7, 3, '7,8', '1,2',   '4',   'Honeybee Adventure',  'zr_k2_p.jpg', 'zr_k2_l.jpg', 'Follow a curious little honeybee exploring blooming summer meadows.', 'external', $vBee, $vBee, $vBee, $vBee, 'mp4', 15000, $vBee, '2026-02-14', 0, 1, 0, 0, 0, 4.7, 9, 14300, 1290],
+            [14, 4, 7, 3, '7,8', '1,2',   '6',   'Butterfly Garden',    'zr_k3_p.jpg', 'zr_k3_l.jpg', 'Colorful butterflies dance through an enchanted forest in this soothing kids classic.', 'external', $vFly, $vFly, $vFly, $vFly, 'mp4', 18000, $vFly, '2026-03-02', 0, 1, 0, 0, 0, 4.8, 11, 16900, 1620],
         ];
         foreach ($videos as $v) {
             $vStmt->execute($v);
@@ -322,10 +322,10 @@ try {
         ");
 
         $shows = [
-            [1, 2, 2, 1, '1,2,4', '1,2', '1,2,3', 'Mumbai Chronicles', 'seed_s1_p.jpg', 'seed_s1_l.jpg', $vSintelTr, 'An investigative journalist and a rookie cop untangle a city-wide conspiracy across two gripping seasons.', '2026-02-01', 0, 0, 0, 4.8, 16, 29400, 2600],
-            [2, 2, 2, 2, '2,5',   '1,2', '1,4,5', 'Code Zero',         'seed_s2_p.jpg', 'seed_s2_l.jpg', $vBunnyTr,  'When India’s quantum grid is hijacked, an underground cyber squad fights back in real time.', '2026-03-12', 0, 0, 0, 4.7, 11, 21300, 1890],
-            [3, 2, 2, 1, '1,2,4', '1,3', '1,2,6', 'Royal Heist',       'seed_s3_p.jpg', 'seed_s3_l.jpg', $vSintelTr, 'A master strategist assembles a crew for an audacious museum heist. Rent full series for ₹199.', '2026-04-08', 1, 4, 14, 4.9, 13, 18700, 1640],
-            [4, 4, 7, 3, '3,7,8', '1,2', '4,6',   'Tiny Explorers',    'seed_s4_p.jpg', 'seed_s4_l.jpg', $vBee,      'Fun bite-sized science and nature adventures crafted for curious young minds.', '2026-03-20', 0, 0, 0, 4.8, 10, 25100, 2240],
+            [1, 2, 2, 1, '1,2,4', '1,2', '1,2,3', 'Mumbai Chronicles', 'zr_s1_p.jpg', 'zr_s1_l.jpg', $vSintelTr, 'An investigative journalist and a rookie cop untangle a city-wide conspiracy across two gripping seasons.', '2026-02-01', 0, 0, 0, 4.8, 16, 29400, 2600],
+            [2, 2, 2, 2, '2,5',   '1,2', '1,4,5', 'Code Zero',         'zr_s2_p.jpg', 'zr_s2_l.jpg', $vBunnyTr,  'When India’s quantum grid is hijacked, an underground cyber squad fights back in real time.', '2026-03-12', 0, 0, 0, 4.7, 11, 21300, 1890],
+            [3, 2, 2, 1, '1,2,4', '1,3', '1,2,6', 'Royal Heist',       'zr_s3_p.jpg', 'zr_s3_l.jpg', $vSintelTr, 'A master strategist assembles a crew for an audacious museum heist. Rent full series for ₹199.', '2026-04-08', 1, 4, 14, 4.9, 13, 18700, 1640],
+            [4, 4, 7, 3, '3,7,8', '1,2', '4,6',   'Tiny Explorers',    'zr_s4_p.jpg', 'zr_s4_l.jpg', $vBee,      'Fun bite-sized science and nature adventures crafted for curious young minds.', '2026-03-20', 0, 0, 0, 4.8, 10, 25100, 2240],
         ];
         foreach ($shows as $sh) {
             $sStmt->execute($sh);
@@ -349,21 +349,21 @@ try {
 
         $episodes = [
             // Show 1: Mumbai Chronicles (Season 1 Free ep1, Premium ep2; Season 2 ep3)
-            [1, 1, 1, 'Ep 1: Blackout at Marine Drive', 'seed_s1_p.jpg', 'seed_s1_l.jpg', 'A sudden citywide blackout triggers a high-stakes investigation.', $vSintel, $vSintel, $vSintel, $vSintel, 'mp4', 88000, 0, 9500, 1],
-            [2, 1, 1, 'Ep 2: The Encrypted Ledger',    'seed_s1_p.jpg', 'seed_s1_l.jpg', 'Hidden coordinates inside an old ledger point to the harbor.', $vHlsTears, $vHlsTears, $vHlsTears, $vHlsTears, 'm3u8', 734000, 1, 7200, 2],
-            [3, 1, 2, 'Ep 1: Return to Colaba',        'seed_s1_p.jpg', 'seed_s1_l.jpg', 'Season 2 opens with a surprise whistleblower stepping forward.', $vMovie300, $vMovie300, $vMovie300, $vMovie300, 'mp4', 120000, 0, 6100, 3],
+            [1, 1, 1, 'Ep 1: Blackout at Marine Drive', 'zr_s1_p.jpg', 'zr_s1_l.jpg', 'A sudden citywide blackout triggers a high-stakes investigation.', $vSintel, $vSintel, $vSintel, $vSintel, 'mp4', 88000, 0, 9500, 1],
+            [2, 1, 1, 'Ep 2: The Encrypted Ledger',    'zr_s1_p.jpg', 'zr_s1_l.jpg', 'Hidden coordinates inside an old ledger point to the harbor.', $vHlsTears, $vHlsTears, $vHlsTears, $vHlsTears, 'm3u8', 734000, 1, 7200, 2],
+            [3, 1, 2, 'Ep 1: Return to Colaba',        'zr_s1_p.jpg', 'zr_s1_l.jpg', 'Season 2 opens with a surprise whistleblower stepping forward.', $vMovie300, $vMovie300, $vMovie300, $vMovie300, 'mp4', 120000, 0, 6100, 3],
 
             // Show 2: Code Zero
-            [4, 2, 1, 'Ep 1: Zero Day Breach',         'seed_s2_p.jpg', 'seed_s2_l.jpg', 'An unknown payload slips past the national firewall.', $vHlsMux, $vHlsMux, $vHlsMux, $vHlsMux, 'm3u8', 596000, 0, 8400, 1],
-            [5, 2, 1, 'Ep 2: Ghost Server',            'seed_s2_p.jpg', 'seed_s2_l.jpg', 'The team traces the signal to an abandoned data bunker.', $vSintel, $vSintel, $vSintel, $vSintel, 'mp4', 88000, 1, 5900, 2],
+            [4, 2, 1, 'Ep 1: Zero Day Breach',         'zr_s2_p.jpg', 'zr_s2_l.jpg', 'An unknown payload slips past the national firewall.', $vHlsMux, $vHlsMux, $vHlsMux, $vHlsMux, 'm3u8', 596000, 0, 8400, 1],
+            [5, 2, 1, 'Ep 2: Ghost Server',            'zr_s2_p.jpg', 'zr_s2_l.jpg', 'The team traces the signal to an abandoned data bunker.', $vSintel, $vSintel, $vSintel, $vSintel, 'mp4', 88000, 1, 5900, 2],
 
             // Show 3: Royal Heist (Rent Show)
-            [6, 3, 1, 'Ep 1: The Blueprint',           'seed_s3_p.jpg', 'seed_s3_l.jpg', 'Five specialists gather in Jaipur to study the palace vault.', $vBunny, $vBunny, $vBunny, $vBunny, 'mp4', 596000, 0, 7800, 1],
-            [7, 3, 1, 'Ep 2: Vault Seven',             'seed_s3_p.jpg', 'seed_s3_l.jpg', 'Laser grids go offline for ninety seconds at midnight.', $vHlsTears, $vHlsTears, $vHlsTears, $vHlsTears, 'm3u8', 734000, 0, 6400, 2],
+            [6, 3, 1, 'Ep 1: The Blueprint',           'zr_s3_p.jpg', 'zr_s3_l.jpg', 'Five specialists gather in Jaipur to study the palace vault.', $vBunny, $vBunny, $vBunny, $vBunny, 'mp4', 596000, 0, 7800, 1],
+            [7, 3, 1, 'Ep 2: Vault Seven',             'zr_s3_p.jpg', 'zr_s3_l.jpg', 'Laser grids go offline for ninety seconds at midnight.', $vHlsTears, $vHlsTears, $vHlsTears, $vHlsTears, 'm3u8', 734000, 0, 6400, 2],
 
             // Show 4: Tiny Explorers (Kids)
-            [8, 4, 1, 'Ep 1: Buzzing Honeybees',       'seed_s4_p.jpg', 'seed_s4_l.jpg', 'Discover how bees make golden honey inside their busy hive.', $vBee, $vBee, $vBee, $vBee, 'mp4', 15000, 0, 11200, 1],
-            [9, 4, 1, 'Ep 2: Dancing Butterflies',     'seed_s4_p.jpg', 'seed_s4_l.jpg', 'Watch caterpillars transform into colorful butterflies.', $vFly, $vFly, $vFly, $vFly, 'mp4', 18000, 0, 10800, 2],
+            [8, 4, 1, 'Ep 1: Buzzing Honeybees',       'zr_s4_p.jpg', 'zr_s4_l.jpg', 'Discover how bees make golden honey inside their busy hive.', $vBee, $vBee, $vBee, $vBee, 'mp4', 15000, 0, 11200, 1],
+            [9, 4, 1, 'Ep 2: Dancing Butterflies',     'zr_s4_p.jpg', 'zr_s4_l.jpg', 'Watch caterpillars transform into colorful butterflies.', $vFly, $vFly, $vFly, $vFly, 'mp4', 18000, 0, 10800, 2],
         ];
         foreach ($episodes as $ep) {
             $epStmt->execute($ep);
@@ -390,10 +390,10 @@ try {
         ");
 
         $shorts = [
-            [1, '1,2', '1,2', '1,4', '60s Thrills',  'seed_sh1.jpg', $vSintelTr, 'Rapid-fire suspense episodes packed into 60 seconds each.', 18200, 1450],
-            [2, '3,6', '1,5', '2,5', 'Comedy Bytes', 'seed_sh2.jpg', $vBunnyTr,  'Hilarious daily relatable sketches and office comedy.',       15400, 1320],
-            [3, '7,8', '1,2', '4,6', 'Wild Nature',  'seed_sh3.jpg', $vBee,      'Mesmerizing macro nature clips in crisp HD.',              12900, 1110],
-            [4, '5,7', '1,2', '3,5', 'Tech Fast',    'seed_sh4.jpg', $vFly,      'Quick futuristic sci-fi teasers and visual wonders.',      11500, 980],
+            [1, '1,2', '1,2', '1,4', '60s Thrills',  'zr_sh1.jpg', $vSintelTr, 'Rapid-fire suspense episodes packed into 60 seconds each.', 18200, 1450],
+            [2, '3,6', '1,5', '2,5', 'Comedy Bytes', 'zr_sh2.jpg', $vBunnyTr,  'Hilarious daily relatable sketches and office comedy.',       15400, 1320],
+            [3, '7,8', '1,2', '4,6', 'Wild Nature',  'zr_sh3.jpg', $vBee,      'Mesmerizing macro nature clips in crisp HD.',              12900, 1110],
+            [4, '5,7', '1,2', '3,5', 'Tech Fast',    'zr_sh4.jpg', $vFly,      'Quick futuristic sci-fi teasers and visual wonders.',      11500, 980],
         ];
         foreach ($shorts as $sh) {
             $shStmt->execute($sh);
@@ -412,14 +412,14 @@ try {
         ");
 
         $shortEps = [
-            [1, 1, 'Part 1: The Last Signal',   'seed_sh1.jpg', 'One phone call changes everything at midnight.', $vSintelTr, 52000, 0, 8100, 1],
-            [2, 1, 'Part 2: Rooftop Escape',    'seed_sh1.jpg', 'The chase continues across Mumbai rooftops.',    $vBunnyTr,  33000, 0, 6200, 2],
-            [3, 2, 'Part 1: Chai Break Chaos',  'seed_sh2.jpg', 'What happens when the boss joins the tea stall.', $vBunnyTr,  33000, 0, 7400, 1],
-            [4, 2, 'Part 2: Monday Standup',    'seed_sh2.jpg', 'Every developer knows this standup meeting!',    $vBee,      15000, 0, 5800, 2],
-            [5, 3, 'Part 1: Garden Pollinators','seed_sh3.jpg', 'Close-up of honeybees at work.',                 $vBee,      15000, 0, 6900, 1],
-            [6, 3, 'Part 2: Wings of Color',    'seed_sh3.jpg', 'Monarch butterflies gliding in slow motion.',    $vFly,      18000, 0, 5400, 2],
-            [7, 4, 'Part 1: Cyber Awakening',   'seed_sh4.jpg', 'First glimpse inside the neon city.',            $vSintelTr, 52000, 0, 5900, 1],
-            [8, 4, 'Part 2: Flutter Engine',    'seed_sh4.jpg', 'Smooth 60fps micro-animations in action.',       $vFly,      18000, 0, 4800, 2],
+            [1, 1, 'Part 1: The Last Signal',   'zr_sh1.jpg', 'One phone call changes everything at midnight.', $vSintelTr, 52000, 0, 8100, 1],
+            [2, 1, 'Part 2: Rooftop Escape',    'zr_sh1.jpg', 'The chase continues across Mumbai rooftops.',    $vBunnyTr,  33000, 0, 6200, 2],
+            [3, 2, 'Part 1: Chai Break Chaos',  'zr_sh2.jpg', 'What happens when the boss joins the tea stall.', $vBunnyTr,  33000, 0, 7400, 1],
+            [4, 2, 'Part 2: Monday Standup',    'zr_sh2.jpg', 'Every developer knows this standup meeting!',    $vBee,      15000, 0, 5800, 2],
+            [5, 3, 'Part 1: Garden Pollinators','zr_sh3.jpg', 'Close-up of honeybees at work.',                 $vBee,      15000, 0, 6900, 1],
+            [6, 3, 'Part 2: Wings of Color',    'zr_sh3.jpg', 'Monarch butterflies gliding in slow motion.',    $vFly,      18000, 0, 5400, 2],
+            [7, 4, 'Part 1: Cyber Awakening',   'zr_sh4.jpg', 'First glimpse inside the neon city.',            $vSintelTr, 52000, 0, 5900, 1],
+            [8, 4, 'Part 2: Flutter Engine',    'zr_sh4.jpg', 'Smooth 60fps micro-animations in action.',       $vFly,      18000, 0, 4800, 2],
         ];
         foreach ($shortEps as $se) {
             $seStmt->execute($se);
@@ -520,9 +520,23 @@ try {
     // 20. Sample Notifications
     if ($tableCount('tbl_notification') === 0) {
         $nStmt = $pdo->prepare("INSERT INTO tbl_notification (id, title, message, storage_type, image, status) VALUES (?, ?, ?, 1, ?, 1)");
-        $nStmt->execute([1, 'Welcome to ZuLive!', 'Stream movies, series, Live TV & Shorts now. Apply code ZULIVE50 for 50% off any INR plan or rental!', 'notif1.jpg']);
-        $nStmt->execute([2, 'New INR Plans & ₹49 Rentals Live', 'Start with our 7-Day Free Trial or upgrade to ZuLive VIP Annual at ₹999/year.', 'notif1.jpg']);
+        $nStmt->execute([1, 'Welcome to ZuLive!', 'Stream movies, series, Live TV & Shorts now. Apply code ZULIVE50 for 50% off any INR plan or rental!', 'zrnotif1.jpg']);
+        $nStmt->execute([2, 'New INR Plans & ₹49 Rentals Live', 'Start with our 7-Day Free Trial or upgrade to ZuLive VIP Annual at ₹999/year.', 'zrnotif1.jpg']);
     }
+
+    // 21. Upgrade earlier gradient-seed filenames to real photographic zr* assets (cache-busted & idempotent)
+    $pdo->exec("UPDATE tbl_video SET thumbnail = REPLACE(thumbnail, 'seed_', 'zr_'), landscape = REPLACE(landscape, 'seed_', 'zr_') WHERE thumbnail LIKE 'seed_%' OR landscape LIKE 'seed_%'");
+    $pdo->exec("UPDATE tbl_tv_show SET thumbnail = REPLACE(thumbnail, 'seed_', 'zr_'), landscape = REPLACE(landscape, 'seed_', 'zr_') WHERE thumbnail LIKE 'seed_%' OR landscape LIKE 'seed_%'");
+    $pdo->exec("UPDATE tbl_tv_show_video SET thumbnail = REPLACE(thumbnail, 'seed_', 'zr_'), landscape = REPLACE(landscape, 'seed_', 'zr_') WHERE thumbnail LIKE 'seed_%' OR landscape LIKE 'seed_%'");
+    $pdo->exec("UPDATE tbl_shorts SET thumbnail = REPLACE(thumbnail, 'seed_', 'zr_') WHERE thumbnail LIKE 'seed_%'");
+    $pdo->exec("UPDATE tbl_shorts_episode SET thumbnail = REPLACE(thumbnail, 'seed_', 'zr_') WHERE thumbnail LIKE 'seed_%'");
+    $pdo->exec("UPDATE tbl_category SET image = CONCAT('zr', image) WHERE image LIKE 'cat_%.jpg'");
+    $pdo->exec("UPDATE tbl_language SET image = CONCAT('zr', image) WHERE image LIKE 'lang_%.jpg'");
+    $pdo->exec("UPDATE tbl_channel SET portrait_img = CONCAT('zr', portrait_img), landscape_img = CONCAT('zr', landscape_img) WHERE portrait_img LIKE 'ch%.jpg'");
+    $pdo->exec("UPDATE tbl_cast SET image = CONCAT('zr', image) WHERE image LIKE 'cast%.jpg'");
+    $pdo->exec("UPDATE tbl_avatar SET image = CONCAT('zr', image) WHERE image LIKE 'av%.jpg'");
+    $pdo->exec("UPDATE tbl_onboarding_screen SET image = CONCAT('zr', image) WHERE image LIKE 'onboard%.jpg'");
+    $pdo->exec("UPDATE tbl_notification SET image = CONCAT('zr', image) WHERE image LIKE 'notif%.jpg'");
 
     $pdo->commit();
     echo "[zulive] Demo dataset verified/seeded successfully (currency=INR ₹).\n";
