@@ -40,9 +40,16 @@ else
 fi
 
 WEB_URL_VAL="${WEB_URL:-${APP_URL_VAL}}"
+if [ "${WEB_URL_VAL}" = "MY_APP_URL" ] || [[ "${WEB_URL_VAL}" != http* ]]; then
+  WEB_URL_VAL="${APP_URL_VAL}"
+fi
 API_TOKEN_VAL="${API_TOKEN:-DTLdcFLx12g5MIGu7deMJIJQTD56qcZx}"
 APP_ENV_VAL="${APP_ENV:-production}"
 APP_DEBUG_VAL="${APP_DEBUG:-false}"
+
+export APP_NAME="${APP_NAME:-ZuLive}"
+export APP_URL="$APP_URL_VAL"
+export WEB_URL="$WEB_URL_VAL"
 
 # Helper to set or append an env key in .env safely
 set_env() {
