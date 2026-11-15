@@ -1,2 +1,14 @@
 *
 !.gitignore
+!*/
+!app/app_*.png
+!app/panel_set_*.png
+!app/onboard*.jpg
+!app/social_*.jpg
+!avatar/av*.jpg
+!cast/cast*.jpg
+!category/cat_*.jpg
+!channel/ch*.jpg
+!content/seed_*.jpg
+!language/lang_*.jpg
+!notification/notif*.jpg

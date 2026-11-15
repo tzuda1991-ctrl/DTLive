@@ -161,6 +161,17 @@ if [ "${AUTO_IMPORT_DB:-true}" = "true" ] && [ -f db/dt_live.sql ]; then
           $pdo->exec("UPDATE tbl_smtp_setting SET from_name = \"ZuLive\", updated_at = NOW() WHERE from_name = \"DTLive-DivineTechs\"");
         ' "$DB_HOST_VAL" "$DB_PORT_VAL" "$DB_DATABASE_VAL" "$DB_USERNAME_VAL" "$DB_PASSWORD_VAL" || true
       fi
+      if [ -f db/seed_zulive_demo.php ]; then
+        echo "[zulive] Ensuring INR currency and demo dataset..."
+        php -r '
+          $pdo = new PDO(
+            "mysql:host=" . $argv[1] . ";port=" . $argv[2] . ";dbname=" . $argv[3] . ";charset=utf8mb4",
+            $argv[4],
+            $argv[5]
+          );
+          require __DIR__ . "/db/seed_zulive_demo.php";
+        ' "$DB_HOST_VAL" "$DB_PORT_VAL" "$DB_DATABASE_VAL" "$DB_USERNAME_VAL" "$DB_PASSWORD_VAL" || true
+      fi
       break
     fi
     echo "[dtlive] Waiting for MySQL ($i/15)..."
