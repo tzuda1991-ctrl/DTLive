@@ -1,5 +1,9 @@
 name: Build DTLive Android APK
 
+concurrency:
+  group: build-apk-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches:

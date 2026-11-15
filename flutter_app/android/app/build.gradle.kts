@@ -69,8 +69,9 @@ android {
             } else {
                 signingConfigs.getByName("debug")
             }
-            isMinifyEnabled = true
-            isShrinkResources = true
+            val enableMinify = project.hasProperty("enableMinify")
+            isMinifyEnabled = enableMinify
+            isShrinkResources = enableMinify
             proguardFiles(
                 getDefaultProguardFile("proguard-android.txt"),
                 "proguard-rules.pro"
