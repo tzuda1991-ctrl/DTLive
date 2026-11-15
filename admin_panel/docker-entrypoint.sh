@@ -30,9 +30,9 @@ DB_DATABASE_VAL="${DB_DATABASE:-${MYSQLDATABASE:-${URL_DB:-dt_live}}}"
 DB_USERNAME_VAL="${DB_USERNAME:-${MYSQLUSER:-${URL_USER:-root}}}"
 DB_PASSWORD_VAL="${DB_PASSWORD:-${MYSQLPASSWORD:-${URL_PASS:-}}}"
 
-# Determine APP_URL automatically from RAILWAY_PUBLIC_DOMAIN if APP_URL is not set
-if [ -n "${APP_URL:-}" ]; then
-  APP_URL_VAL="${APP_URL}"
+# Determine APP_URL automatically from RAILWAY_PUBLIC_DOMAIN if APP_URL is unset or a placeholder
+if [ -n "${APP_URL:-}" ] && [ "${APP_URL}" != "MY_APP_URL" ] && [[ "${APP_URL}" == http* ]]; then
+  APP_URL_VAL="${APP_URL%/}"
 elif [ -n "${RAILWAY_PUBLIC_DOMAIN:-}" ]; then
   APP_URL_VAL="https://${RAILWAY_PUBLIC_DOMAIN}"
 else

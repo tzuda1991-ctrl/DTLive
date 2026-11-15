@@ -4,12 +4,12 @@ import '../model/subtitlemodel.dart';
 class Constant {
   static String baseUrl = const String.fromEnvironment(
     'API_BASE_URL',
-    defaultValue: 'Enter your API url...',
-  ); // Replace with your API Path (Get from Admin panel) or pass --dart-define=API_BASE_URL=...
+    defaultValue: 'https://dtlive-production.up.railway.app/api/',
+  );
   static String apiToken = const String.fromEnvironment(
     'API_TOKEN',
-    defaultValue: 'Enter your API Token...',
-  ); // Replace with your API Token (Get from Admin panel) or pass --dart-define=API_TOKEN=...
+    defaultValue: 'DTLdcFLx12g5MIGu7deMJIJQTD56qcZx',
+  );
 
   static String appName = "yourappname";
   static String appPackageName =
