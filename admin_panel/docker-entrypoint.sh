@@ -8,12 +8,27 @@ if [ ! -f .env ]; then
   cp .env.example .env
 fi
 
+# If MYSQL_URL or DATABASE_URL is provided, extract connection parts as fallbacks
+CONN_URL="${MYSQL_URL:-${DATABASE_URL:-}}"
+if [ -n "$CONN_URL" ]; then
+  eval "$(php -r '
+    $u = parse_url($argv[1]);
+    if ($u && isset($u["host"])) {
+      echo "URL_HOST=" . escapeshellarg($u["host"]) . "\n";
+      echo "URL_PORT=" . escapeshellarg((string)($u["port"] ?? 3306)) . "\n";
+      echo "URL_DB=" . escapeshellarg(ltrim($u["path"] ?? "railway", "/")) . "\n";
+      echo "URL_USER=" . escapeshellarg($u["user"] ?? "root") . "\n";
+      echo "URL_PASS=" . escapeshellarg($u["pass"] ?? "") . "\n";
+    }
+  ' "$CONN_URL")"
+fi
+
 # Map Railway MySQL variables automatically if DB_* are not explicitly provided
-DB_HOST_VAL="${DB_HOST:-${MYSQLHOST:-127.0.0.1}}"
-DB_PORT_VAL="${DB_PORT:-${MYSQLPORT:-3306}}"
-DB_DATABASE_VAL="${DB_DATABASE:-${MYSQLDATABASE:-dt_live}}"
-DB_USERNAME_VAL="${DB_USERNAME:-${MYSQLUSER:-root}}"
-DB_PASSWORD_VAL="${DB_PASSWORD:-${MYSQLPASSWORD:-}}"
+DB_HOST_VAL="${DB_HOST:-${MYSQLHOST:-${URL_HOST:-127.0.0.1}}}"
+DB_PORT_VAL="${DB_PORT:-${MYSQLPORT:-${URL_PORT:-3306}}}"
+DB_DATABASE_VAL="${DB_DATABASE:-${MYSQLDATABASE:-${URL_DB:-dt_live}}}"
+DB_USERNAME_VAL="${DB_USERNAME:-${MYSQLUSER:-${URL_USER:-root}}}"
+DB_PASSWORD_VAL="${DB_PASSWORD:-${MYSQLPASSWORD:-${URL_PASS:-}}}"
 
 # Determine APP_URL automatically from RAILWAY_PUBLIC_DOMAIN if APP_URL is not set
 if [ -n "${APP_URL:-}" ]; then
