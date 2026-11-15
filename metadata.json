@@ -1,0 +1,6 @@
+{
+  "name": "DTLive Deployment & APK Studio",
+  "description": "Railway backend deployment and GitHub Actions APK build workspace for DTLive v2.1.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

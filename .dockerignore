@@ -1,0 +1,9 @@
+node_modules/
+flutter_app/
+src/
+dist/
+build/
+.git/
+admin_panel/vendor/
+admin_panel/.env
+*.log
