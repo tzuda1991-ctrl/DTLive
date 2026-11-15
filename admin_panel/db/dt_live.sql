@@ -310,7 +310,7 @@ INSERT INTO `tbl_general_setting` (`id`, `key`, `value`, `created_at`, `updated_
 (59, 'min_withdrawal_amount', '100', '2025-09-04 12:19:09', '2026-05-11 12:17:00'),
 (60, 'vdocipher_status', '0', '2025-09-05 05:24:23', '2025-09-05 08:38:04'),
 (61, 'vdocipher_api_secret_key', '', '2025-09-05 05:24:23', '2025-09-05 08:40:14'),
-(62, 'web_client_id', '', '2025-10-06 06:28:08', '2026-05-11 12:16:34'),
+(62, 'web_client_id', '1048103822396-4o8qocm5f8di4uqmskealtfcdqskc10f.apps.googleusercontent.com', '2025-10-06 06:28:08', '2026-05-11 12:16:34'),
 (63, 'playstore_url', 'https://play.google.com/store/apps/details?id=com.zulive.app', '2026-02-25 12:25:45', '2026-02-25 17:03:13'),
 (64, 'appstore_url', 'https://testflight.apple.com/join/NrPgK6wi', '2026-02-25 12:25:45', '2026-02-25 17:03:13'),
 (65, 'refer_and_earn_status', '0', '2026-03-23 04:51:16', '2026-05-11 12:17:05'),

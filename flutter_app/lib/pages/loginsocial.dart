@@ -473,10 +473,11 @@ class LoginSocialState extends State<LoginSocial> {
     try {
       webServerClientId =
           (await sharedPre.read(Constant.googleClientIdKey))?.toString().trim();
-      final String? validServerClientId =
-          (webServerClientId != null && webServerClientId!.isNotEmpty)
-              ? webServerClientId
-              : null;
+      if (webServerClientId == null || webServerClientId!.isEmpty) {
+        webServerClientId =
+            '1048103822396-4o8qocm5f8di4uqmskealtfcdqskc10f.apps.googleusercontent.com';
+      }
+      final String? validServerClientId = webServerClientId;
       await googleSignIn.initialize(
         clientId: null,
         serverClientId: Platform.isIOS ? null : validServerClientId,

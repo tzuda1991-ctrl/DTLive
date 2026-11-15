@@ -1,77 +1,34 @@
 {
   "project_info": {
-    "project_number": "946063364931",
-    "project_id": "yourappname-9aca3",
-    "storage_bucket": "yourappname-9aca3.firebasestorage.app"
+    "project_number": "1048103822396",
+    "project_id": "zulive-ba29e",
+    "storage_bucket": "zulive-ba29e.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:946063364931:android:cd523b5793563a3257d5f6",
+        "mobilesdk_app_id": "1:1048103822396:android:1c315eac0b866d8b734f39",
         "android_client_info": {
           "package_name": "com.zulive.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "946063364931-709266s19taopeuqpb2k16e72b5aar4h.apps.googleusercontent.com",
+          "client_id": "1048103822396-4o8qocm5f8di4uqmskealtfcdqskc10f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAORaonzstIpKxEcvdT14tr44nKnJzO0Co"
+          "current_key": "AIzaSyBUqCnEoRGfW2FMUg9rNulOMO3xY_ksYL8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "946063364931-709266s19taopeuqpb2k16e72b5aar4h.apps.googleusercontent.com",
+              "client_id": "1048103822396-4o8qocm5f8di4uqmskealtfcdqskc10f.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "946063364931-55san9quqmqn89716spaku6sa381p4de.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.iptv.ott"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:946063364931:android:fe52365a7e72c6fc57d5f6",
-        "android_client_info": {
-          "package_name": "com.example.yourappnames"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "946063364931-709266s19taopeuqpb2k16e72b5aar4h.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAORaonzstIpKxEcvdT14tr44nKnJzO0Co"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "946063364931-709266s19taopeuqpb2k16e72b5aar4h.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "946063364931-55san9quqmqn89716spaku6sa381p4de.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.iptv.ott"
-              }
             }
           ]
         }

@@ -157,6 +157,7 @@ if [ "${AUTO_IMPORT_DB:-true}" = "true" ] && [ -f db/dt_live.sql ]; then
           $pdo->exec("UPDATE tbl_general_setting SET value = \"ZuLive\", updated_at = NOW() WHERE `key` = \"author\" AND value = \"DivineTechs\"");
           $pdo->exec("UPDATE tbl_general_setting SET value = \"ZuLive OTT Streaming Platform\", updated_at = NOW() WHERE `key` = \"app_desripation\" AND value LIKE \"Divinetechs is an IT company%\"");
           $pdo->exec("UPDATE tbl_general_setting SET value = \"https://play.google.com/store/apps/details?id=com.zulive.app\", updated_at = NOW() WHERE `key` = \"playstore_url\" AND value LIKE \"%com.divinetechs.dtlive%\"");
+          $pdo->exec("UPDATE tbl_general_setting SET value = \"1048103822396-4o8qocm5f8di4uqmskealtfcdqskc10f.apps.googleusercontent.com\", updated_at = NOW() WHERE `key` = \"web_client_id\" AND (value IS NULL OR value = \"\")");
           $pdo->exec("UPDATE tbl_smtp_setting SET from_name = \"ZuLive\", updated_at = NOW() WHERE from_name = \"DTLive-DivineTechs\"");
         ' "$DB_HOST_VAL" "$DB_PORT_VAL" "$DB_DATABASE_VAL" "$DB_USERNAME_VAL" "$DB_PASSWORD_VAL" || true
       fi

@@ -41,54 +41,46 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDtOUk23PrTjn_CXbMf36CRcOK7LnHYGos',
-    appId: '1:946063364931:web:2c9415841519ebab57d5f6',
-    messagingSenderId: '946063364931',
-    projectId: 'yourappname-9aca3',
-    authDomain: 'yourappname-9aca3.firebaseapp.com',
-    storageBucket: 'yourappname-9aca3.firebasestorage.app',
+    apiKey: 'AIzaSyBUqCnEoRGfW2FMUg9rNulOMO3xY_ksYL8',
+    appId: '1:1048103822396:android:1c315eac0b866d8b734f39',
+    messagingSenderId: '1048103822396',
+    projectId: 'zulive-ba29e',
+    authDomain: 'zulive-ba29e.firebaseapp.com',
+    storageBucket: 'zulive-ba29e.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAORaonzstIpKxEcvdT14tr44nKnJzO0Co',
-    appId: '1:946063364931:android:cd523b5793563a3257d5f6',
-    messagingSenderId: '946063364931',
-    projectId: 'yourappname-9aca3',
-    storageBucket: 'yourappname-9aca3.firebasestorage.app',
+    apiKey: 'AIzaSyBUqCnEoRGfW2FMUg9rNulOMO3xY_ksYL8',
+    appId: '1:1048103822396:android:1c315eac0b866d8b734f39',
+    messagingSenderId: '1048103822396',
+    projectId: 'zulive-ba29e',
+    storageBucket: 'zulive-ba29e.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDv8lz2mfppOZhU4AH9F2pWx3Os6IcoACg',
-    appId: '1:946063364931:ios:7b130569ab62d92257d5f6',
-    messagingSenderId: '946063364931',
-    projectId: 'yourappname-9aca3',
-    storageBucket: 'yourappname-9aca3.firebasestorage.app',
-    androidClientId:
-        '946063364931-0tvpgi5e3p1h4joss2kso187lolk2qen.apps.googleusercontent.com',
-    iosClientId:
-        '946063364931-mf45cskfiqtc63namugb7n5usvgm8vkq.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBUqCnEoRGfW2FMUg9rNulOMO3xY_ksYL8',
+    appId: '1:1048103822396:android:1c315eac0b866d8b734f39',
+    messagingSenderId: '1048103822396',
+    projectId: 'zulive-ba29e',
+    storageBucket: 'zulive-ba29e.firebasestorage.app',
     iosBundleId: 'com.zulive.app',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDv8lz2mfppOZhU4AH9F2pWx3Os6IcoACg',
-    appId: '1:946063364931:ios:7b130569ab62d92257d5f6',
-    messagingSenderId: '946063364931',
-    projectId: 'yourappname-9aca3',
-    storageBucket: 'yourappname-9aca3.firebasestorage.app',
-    androidClientId:
-        '946063364931-0tvpgi5e3p1h4joss2kso187lolk2qen.apps.googleusercontent.com',
-    iosClientId:
-        '946063364931-mf45cskfiqtc63namugb7n5usvgm8vkq.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBUqCnEoRGfW2FMUg9rNulOMO3xY_ksYL8',
+    appId: '1:1048103822396:android:1c315eac0b866d8b734f39',
+    messagingSenderId: '1048103822396',
+    projectId: 'zulive-ba29e',
+    storageBucket: 'zulive-ba29e.firebasestorage.app',
     iosBundleId: 'com.zulive.app',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDtOUk23PrTjn_CXbMf36CRcOK7LnHYGos',
-    appId: '1:946063364931:web:b77a759b6b9df96757d5f6',
-    messagingSenderId: '946063364931',
-    projectId: 'yourappname-9aca3',
-    authDomain: 'yourappname-9aca3.firebaseapp.com',
-    storageBucket: 'yourappname-9aca3.firebasestorage.app',
+    apiKey: 'AIzaSyBUqCnEoRGfW2FMUg9rNulOMO3xY_ksYL8',
+    appId: '1:1048103822396:android:1c315eac0b866d8b734f39',
+    messagingSenderId: '1048103822396',
+    projectId: 'zulive-ba29e',
+    authDomain: 'zulive-ba29e.firebaseapp.com',
+    storageBucket: 'zulive-ba29e.firebasestorage.app',
   );
 }
