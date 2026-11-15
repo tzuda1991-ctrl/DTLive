@@ -125,11 +125,22 @@ jobs:
 
       - name: Print APK Signing SHA-1 Fingerprint
         if: ${{ (github.event.inputs.build_type || 'apk') != 'appbundle' }}
+        env:
+          ANDROID_STORE_PASSWORD: ${{ secrets.ANDROID_STORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
         run: |
           APK_FILE=$(ls build/app/outputs/flutter-apk/*.apk | head -n 1)
+          echo "=== Signing Certificate Fingerprints (Add SHA-1 to Firebase Console) ==="
+          if [ -f android/app/release-keystore.jks ]; then
+            keytool -list -v -keystore android/app/release-keystore.jks -alias "$ANDROID_KEY_ALIAS" -storepass "$ANDROID_STORE_PASSWORD" | grep -E "SHA1:|SHA256:" || true
+          elif [ -f "$HOME/.android/debug.keystore" ]; then
+            keytool -list -v -keystore "$HOME/.android/debug.keystore" -alias androiddebugkey -storepass android -keypass android | grep -E "SHA1:|SHA256:" || true
+          fi
           if [ -n "$APK_FILE" ]; then
-            echo "=== Signing Certificate Fingerprints (Add SHA-1 to Firebase Console) ==="
-            keytool -printcert -jarfile "$APK_FILE" || true
+            APKSIGNER=$(find "$ANDROID_HOME/build-tools" -name apksigner 2>/dev/null | sort -V | tail -n 1)
+            if [ -n "$APKSIGNER" ]; then
+              "$APKSIGNER" verify --print-certs "$APK_FILE" || true
+            fi
           fi
 
       - name: Upload APK artifact
