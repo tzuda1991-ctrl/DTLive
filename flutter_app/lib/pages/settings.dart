@@ -132,11 +132,16 @@ class SettingsState extends State<Settings> with RouteAware {
 
   Future<void> _initGoogleSignIn() async {
     try {
-      webServerClientId = await sharedPref.read(Constant.googleClientIdKey);
-      printLog("_initGoogleSignIn webServerClientId ===> $webServerClientId");
+      webServerClientId =
+          (await sharedPref.read(Constant.googleClientIdKey))?.toString().trim();
+      final String? validServerClientId =
+          (webServerClientId != null && webServerClientId!.isNotEmpty)
+              ? webServerClientId
+              : null;
+      printLog("_initGoogleSignIn webServerClientId ===> $validServerClientId");
       await googleSignIn.initialize(
-        clientId: webServerClientId,
-        serverClientId: webServerClientId,
+        clientId: null,
+        serverClientId: validServerClientId,
       );
     } catch (e) {
       printLog("_initGoogleSignIn GoogleSignIn Error ===> $e");

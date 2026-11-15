@@ -123,6 +123,15 @@ jobs:
             flutter build appbundle --release "${DART_DEFINES[@]}"
           fi
 
+      - name: Print APK Signing SHA-1 Fingerprint
+        if: ${{ (github.event.inputs.build_type || 'apk') != 'appbundle' }}
+        run: |
+          APK_FILE=$(ls build/app/outputs/flutter-apk/*.apk | head -n 1)
+          if [ -n "$APK_FILE" ]; then
+            echo "=== Signing Certificate Fingerprints (Add SHA-1 to Firebase Console) ==="
+            keytool -printcert -jarfile "$APK_FILE" || true
+          fi
+
       - name: Upload APK artifact
         if: ${{ (github.event.inputs.build_type || 'apk') != 'appbundle' }}
         uses: actions/upload-artifact@v4

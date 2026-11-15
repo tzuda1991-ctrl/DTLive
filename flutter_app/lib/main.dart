@@ -99,9 +99,13 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
         if (kIsWeb) {
           await googleSignIn.initialize();
         } else {
+          final String? validServerClientId =
+              (webServerClientId != null && webServerClientId.trim().isNotEmpty)
+                  ? webServerClientId.trim()
+                  : null;
           await googleSignIn.initialize(
-            clientId: webServerClientId,
-            serverClientId: webServerClientId,
+            clientId: null,
+            serverClientId: validServerClientId,
           );
         }
 

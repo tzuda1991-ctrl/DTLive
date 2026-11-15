@@ -471,9 +471,15 @@ class LoginSocialState extends State<LoginSocial> {
   /* Google Login */
   Future<void> _initGoogleSignIn() async {
     try {
+      webServerClientId =
+          (await sharedPre.read(Constant.googleClientIdKey))?.toString().trim();
+      final String? validServerClientId =
+          (webServerClientId != null && webServerClientId!.isNotEmpty)
+              ? webServerClientId
+              : null;
       await googleSignIn.initialize(
-        clientId: Platform.isIOS ? null : webServerClientId,
-        serverClientId: Platform.isIOS ? null : webServerClientId,
+        clientId: null,
+        serverClientId: Platform.isIOS ? null : validServerClientId,
       );
       initialized = true;
     } catch (e) {
@@ -485,13 +491,22 @@ class LoginSocialState extends State<LoginSocial> {
 
   Future<void> _gmailLogin() async {
     try {
-      if (!initialized) {
+      if (!initialized || (webServerClientId ?? '').trim().isEmpty) {
         await _initGoogleSignIn();
+      }
+      if (!Platform.isIOS && (webServerClientId ?? '').trim().isEmpty) {
+        Utils.showToast(
+          "Google Login not configured: Set Web Client ID in Admin Panel App Settings.",
+        );
+        return;
       }
       GoogleSignInAccount? googleUser = await googleSignIn.authenticate(
         scopeHint: ['email', 'profile'],
       );
-      if (googleUser.authentication.idToken == null) return;
+      if (googleUser.authentication.idToken == null) {
+        Utils.showToast("Google sign-in failed: missing ID token.");
+        return;
+      }
 
       GoogleSignInAccount user = googleUser;
 
@@ -538,10 +553,12 @@ class LoginSocialState extends State<LoginSocial> {
       printLog('_gmailLogin Firebase Error =======> ${e.message.toString()}');
       if (!mounted) return;
       LoadingOverlay().hide();
-    } on Exception catch (e) {
-      printLog('_gmailLogin Exception ==> $e');
+      Utils.showToast(e.message ?? "Firebase Google login failed (${e.code})");
+    } catch (e) {
+      printLog('_gmailLogin Error ==> $e');
       if (!mounted) return;
       LoadingOverlay().hide();
+      Utils.showToast("Google login error: $e");
     }
   }
 
