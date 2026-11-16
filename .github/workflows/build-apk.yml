@@ -101,7 +101,7 @@ jobs:
           VAR_URL: ${{ vars.API_BASE_URL }}
           VAR_TOKEN: ${{ vars.API_TOKEN }}
           BUILD_TYPE: ${{ github.event.inputs.build_type || 'apk' }}
-          SPLIT_ABI: ${{ (github.event.inputs.split_per_abi == 'false' || github.event.inputs.split_per_abi == false) && 'false' || 'true' }}
+          SPLIT_ABI: ${{ github.event.inputs.split_per_abi }}
         run: |
           DART_DEFINES=()
           FINAL_URL="${INPUT_URL:-$VAR_URL}"
@@ -117,7 +117,7 @@ jobs:
           mkdir -p build/app/outputs/release-artifacts
 
           if [ "$BUILD_TYPE" = "apk" ] || [ "$BUILD_TYPE" = "both" ]; then
-            if [ "$SPLIT_ABI" = "true" ]; then
+            if [ "$SPLIT_ABI" != "false" ]; then
               flutter build apk --release --split-per-abi --target-platform android-arm64,android-arm "${DART_DEFINES[@]}"
               cp -f build/app/outputs/flutter-apk/app-arm64-v8a-release.apk build/app/outputs/release-artifacts/ZuLive-arm64-v8a.apk
               cp -f build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk build/app/outputs/release-artifacts/ZuLive-armeabi-v7a.apk
@@ -164,7 +164,7 @@ jobs:
           fi
 
       - name: Upload arm64-v8a APK (Most Modern Phones - Recommended)
-        if: ${{ (github.event.inputs.build_type || 'apk') != 'appbundle' && github.event.inputs.split_per_abi != 'false' && github.event.inputs.split_per_abi != false }}
+        if: ${{ (github.event.inputs.build_type || 'apk') != 'appbundle' && github.event.inputs.split_per_abi != 'false' }}
         uses: actions/upload-artifact@v4
         with:
           name: zulive-apk-arm64-most-phones
@@ -172,7 +172,7 @@ jobs:
           retention-days: 30
 
       - name: Upload armeabi-v7a APK (Older 32-bit Phones)
-        if: ${{ (github.event.inputs.build_type || 'apk') != 'appbundle' && github.event.inputs.split_per_abi != 'false' && github.event.inputs.split_per_abi != false }}
+        if: ${{ (github.event.inputs.build_type || 'apk') != 'appbundle' && github.event.inputs.split_per_abi != 'false' }}
         uses: actions/upload-artifact@v4
         with:
           name: zulive-apk-armv7-older-phones
@@ -180,7 +180,7 @@ jobs:
           retention-days: 30
 
       - name: Upload Universal APK artifact
-        if: ${{ (github.event.inputs.build_type || 'apk') != 'appbundle' && (github.event.inputs.split_per_abi == 'false' || github.event.inputs.split_per_abi == false) }}
+        if: ${{ (github.event.inputs.build_type || 'apk') != 'appbundle' && github.event.inputs.split_per_abi == 'false' }}
         uses: actions/upload-artifact@v4
         with:
           name: zulive-android-apk
