@@ -261,6 +261,12 @@
                 <span>{{__('label.app_settings')}}</span>
             </a>
         </li>
+        <li class="side_line {{ request()->routeIs('admin.theme.setting*') ? 'active' : '' }}">
+            <a href="{{ route('admin.theme.setting.index') }}">
+                <i class="fa-solid fa-swatchbook fa-xl menu-icon"></i>
+                <span>App Theme &amp; Colors</span>
+            </a>
+        </li>
         <li class="side_line {{ request()->routeIs('admin.panel.setting*') ? 'active' : '' }}">
             <a href="{{ route('admin.panel.setting.index') }}">
                 <i class="fa-solid fa-palette fa-xl menu-icon"></i>

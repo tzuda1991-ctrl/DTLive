@@ -150,7 +150,7 @@ class ActiveTVState extends State<ActiveTV> {
                     width: MediaQuery.of(context).size.width,
                     height: 52,
                     decoration: BoxDecoration(
-                      gradient: const LinearGradient(
+                      gradient: LinearGradient(
                         colors: [colorPrimary, colorPrimaryDark],
                         begin: FractionalOffset(0.0, 0.0),
                         end: FractionalOffset(1.0, 0.0),

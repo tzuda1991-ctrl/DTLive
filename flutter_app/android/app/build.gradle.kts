@@ -69,7 +69,7 @@ android {
             } else {
                 signingConfigs.getByName("debug")
             }
-            val enableMinify = project.hasProperty("enableMinify")
+            val enableMinify = (project.findProperty("enableMinify") as String?)?.toBoolean() ?: true
             isMinifyEnabled = enableMinify
             isShrinkResources = enableMinify
             proguardFiles(

@@ -786,7 +786,7 @@ class _WebClipsEpisodesState extends State<WebClipsEpisodes> {
                                 child: Container(
                                   height: 20,
                                   width: 20,
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     color: colorPrimary,
                                     borderRadius: BorderRadius.only(
                                       topRight: Radius.circular(7),

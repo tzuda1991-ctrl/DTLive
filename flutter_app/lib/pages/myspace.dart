@@ -506,7 +506,7 @@ class MySpaceState extends State<MySpace> with RouteAware {
                 padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
                 decoration: Utils.setBackground(colorPrimary, 10),
                 child: MyText(
-                  color: black,
+                  color: onPrimaryBtnTextColor,
                   text: "subscribe",
                   multilanguage: true,
                   textalign: TextAlign.start,

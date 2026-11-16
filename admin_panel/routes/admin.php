@@ -47,6 +47,7 @@ use App\Http\Controllers\Admin\WithdrawalController;
 use App\Http\Controllers\Admin\WalletTransactionController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\YouTubeImporterController;
+use App\Http\Controllers\Admin\ThemeSettingController;
 
 Route::group(['middleware' => 'installation'], function () {
 
@@ -200,6 +201,9 @@ Route::group(['middleware' => 'installation'], function () {
         // Panel Setting
         Route::get('panel-setting', [PanelSettingController::class, 'index'])->name('panel.setting.index');
         Route::post('panel-setting/save', [PanelSettingController::class, 'save'])->name('panel.setting.save');
+        // App Theme & Colors Setting
+        Route::get('theme-setting', [ThemeSettingController::class, 'index'])->name('theme.setting.index');
+        Route::post('theme-setting/save', [ThemeSettingController::class, 'save'])->name('theme.setting.save');
         // System Setting
         Route::get('system-setting', [SystemSettingController::class, 'index'])->name('system.setting.index');
         Route::post('system-setting/cleardata', [SystemSettingController::class, 'ClearData'])->name('system.setting.cleardata');

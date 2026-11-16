@@ -24,9 +24,9 @@ on:
           - appbundle
           - both
       split_per_abi:
-        description: 'Build split APKs per CPU architecture (smaller size)'
+        description: 'Build separate smaller APKs per CPU (arm64 + armv7)'
         required: false
-        default: false
+        default: true
         type: boolean
       api_base_url:
         description: 'Override API Base URL (e.g. https://your-app.up.railway.app/api/)'
@@ -91,6 +91,9 @@ jobs:
       - name: Install Flutter dependencies
         run: flutter pub get
 
+      - name: Verify Dart compilation (flutter analyze)
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+
       - name: Build Android APK / App Bundle
         env:
           INPUT_URL: ${{ github.event.inputs.api_base_url }}
@@ -98,7 +101,7 @@ jobs:
           VAR_URL: ${{ vars.API_BASE_URL }}
           VAR_TOKEN: ${{ vars.API_TOKEN }}
           BUILD_TYPE: ${{ github.event.inputs.build_type || 'apk' }}
-          SPLIT_ABI: ${{ github.event.inputs.split_per_abi || 'false' }}
+          SPLIT_ABI: ${{ (github.event.inputs.split_per_abi == 'false' || github.event.inputs.split_per_abi == false) && 'false' || 'true' }}
         run: |
           DART_DEFINES=()
           FINAL_URL="${INPUT_URL:-$VAR_URL}"
@@ -111,11 +114,16 @@ jobs:
             DART_DEFINES+=("--dart-define=API_TOKEN=$FINAL_TOKEN")
           fi
 
+          mkdir -p build/app/outputs/release-artifacts
+
           if [ "$BUILD_TYPE" = "apk" ] || [ "$BUILD_TYPE" = "both" ]; then
             if [ "$SPLIT_ABI" = "true" ]; then
-              flutter build apk --release --split-per-abi "${DART_DEFINES[@]}"
+              flutter build apk --release --split-per-abi --target-platform android-arm64,android-arm "${DART_DEFINES[@]}"
+              cp -f build/app/outputs/flutter-apk/app-arm64-v8a-release.apk build/app/outputs/release-artifacts/ZuLive-arm64-v8a.apk
+              cp -f build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk build/app/outputs/release-artifacts/ZuLive-armeabi-v7a.apk
             else
               flutter build apk --release "${DART_DEFINES[@]}"
+              cp -f build/app/outputs/flutter-apk/app-release.apk build/app/outputs/release-artifacts/ZuLive-universal.apk
             fi
           fi
 
@@ -123,13 +131,25 @@ jobs:
             flutter build appbundle --release "${DART_DEFINES[@]}"
           fi
 
+          echo "=== Built APK Sizes ==="
+          ls -lh build/app/outputs/release-artifacts/ || true
+          {
+            echo "## ZuLive Android Build Output"
+            echo ""
+            for f in build/app/outputs/release-artifacts/*.apk; do
+              [ -f "$f" ] || continue
+              SIZE_MB=$(du -m "$f" | cut -f1)
+              echo "- **$(basename "$f")**: ${SIZE_MB} MB"
+            done
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Print APK Signing SHA-1 Fingerprint
         if: ${{ (github.event.inputs.build_type || 'apk') != 'appbundle' }}
         env:
           ANDROID_STORE_PASSWORD: ${{ secrets.ANDROID_STORE_PASSWORD }}
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
         run: |
-          APK_FILE=$(ls build/app/outputs/flutter-apk/*.apk | head -n 1)
+          APK_FILE=$(ls build/app/outputs/release-artifacts/*.apk | head -n 1)
           echo "=== Signing Certificate Fingerprints (Add SHA-1 to Firebase Console) ==="
           if [ -f android/app/release-keystore.jks ]; then
             keytool -list -v -keystore android/app/release-keystore.jks -alias "$ANDROID_KEY_ALIAS" -storepass "$ANDROID_STORE_PASSWORD" | grep -E "SHA1:|SHA256:" || true
@@ -143,12 +163,28 @@ jobs:
             fi
           fi
 
-      - name: Upload APK artifact
-        if: ${{ (github.event.inputs.build_type || 'apk') != 'appbundle' }}
+      - name: Upload arm64-v8a APK (Most Modern Phones - Recommended)
+        if: ${{ (github.event.inputs.build_type || 'apk') != 'appbundle' && github.event.inputs.split_per_abi != 'false' && github.event.inputs.split_per_abi != false }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: zulive-apk-arm64-most-phones
+          path: flutter_app/build/app/outputs/release-artifacts/ZuLive-arm64-v8a.apk
+          retention-days: 30
+
+      - name: Upload armeabi-v7a APK (Older 32-bit Phones)
+        if: ${{ (github.event.inputs.build_type || 'apk') != 'appbundle' && github.event.inputs.split_per_abi != 'false' && github.event.inputs.split_per_abi != false }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: zulive-apk-armv7-older-phones
+          path: flutter_app/build/app/outputs/release-artifacts/ZuLive-armeabi-v7a.apk
+          retention-days: 30
+
+      - name: Upload Universal APK artifact
+        if: ${{ (github.event.inputs.build_type || 'apk') != 'appbundle' && (github.event.inputs.split_per_abi == 'false' || github.event.inputs.split_per_abi == false) }}
         uses: actions/upload-artifact@v4
         with:
           name: zulive-android-apk
-          path: flutter_app/build/app/outputs/flutter-apk/*.apk
+          path: flutter_app/build/app/outputs/release-artifacts/ZuLive-universal.apk
           retention-days: 30
 
       - name: Upload App Bundle (.aab) artifact

@@ -176,7 +176,7 @@ class _ClipsEpisodesState extends State<ClipsEpisodes> {
       overlays: SystemUiOverlay.values,
     );
     SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
+      SystemUiOverlayStyle(
         statusBarColor: transparent,
         systemNavigationBarColor: secondaryBgColor,
         statusBarBrightness: Brightness.light,

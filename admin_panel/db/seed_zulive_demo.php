@@ -538,6 +538,28 @@ try {
     $pdo->exec("UPDATE tbl_onboarding_screen SET image = CONCAT('zr', image) WHERE image LIKE 'onboard%.jpg'");
     $pdo->exec("UPDATE tbl_notification SET image = CONCAT('zr', image) WHERE image LIKE 'notif%.jpg'");
 
+    // 22. Ensure default App Theme & Color settings exist in tbl_general_setting
+    $themeDefaults = [
+        'theme_preset' => 'zulive_lime',
+        'theme_primary_color' => '#BAFA34',
+        'theme_primary_dark_color' => '#6EBE6B',
+        'theme_accent_color' => '#EC2B4E',
+        'theme_bg_color' => '#000000',
+        'theme_surface_color' => '#1F2229',
+        'theme_panel_bg_color' => '#0E0E16',
+        'theme_title_text_color' => '#FFFFFF',
+        'theme_desc_text_color' => '#A9AAAC',
+        'theme_btn_text_color' => '#000000',
+    ];
+    $chkStmt = $pdo->prepare("SELECT COUNT(*) FROM tbl_general_setting WHERE `key` = ?");
+    $insStmt = $pdo->prepare("INSERT INTO tbl_general_setting (`key`, `value`, created_at, updated_at) VALUES (?, ?, NOW(), NOW())");
+    foreach ($themeDefaults as $tKey => $tVal) {
+        $chkStmt->execute([$tKey]);
+        if ((int) $chkStmt->fetchColumn() === 0) {
+            $insStmt->execute([$tKey, $tVal]);
+        }
+    }
+
     $pdo->commit();
     echo "[zulive] Demo dataset verified/seeded successfully (currency=INR ₹).\n";
 } catch (Throwable $e) {

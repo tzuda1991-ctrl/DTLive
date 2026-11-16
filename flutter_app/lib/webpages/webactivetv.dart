@@ -126,7 +126,7 @@ class WebActiveTVState extends State<WebActiveTV> {
         fit: StackFit.expand,
         children: [
           MyImage(
-            imagePath: "login_bg_land.png",
+            imagePath: "login_bg_land.webp",
             fit: BoxFit.cover,
             width: double.infinity,
             height: _sh,

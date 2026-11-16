@@ -117,7 +117,7 @@ class _WalletState extends State<Wallet> {
       elevation: 0,
       centerTitle: true,
       leading: IconButton(
-        icon: const Icon(
+        icon: Icon(
           Icons.arrow_back_ios_new_rounded,
           color: titleTextColor,
           size: 20,
@@ -738,7 +738,7 @@ class _WalletState extends State<Wallet> {
               TextField(
                 controller: _amountController,
                 keyboardType: TextInputType.number,
-                style: const TextStyle(
+                style: TextStyle(
                   color: titleTextColor,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -747,7 +747,7 @@ class _WalletState extends State<Wallet> {
                   prefixText: Constant.currencySymbol.isNotEmpty
                       ? '${Constant.currencySymbol} '
                       : '',
-                  prefixStyle: const TextStyle(
+                  prefixStyle: TextStyle(
                     color: colorPrimary,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -759,14 +759,14 @@ class _WalletState extends State<Wallet> {
                   filled: true,
                   fillColor: appBgColor,
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       color: colorPrimary,
                       width: 0.8,
                     ),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       color: colorPrimary,
                       width: 1.5,
                     ),

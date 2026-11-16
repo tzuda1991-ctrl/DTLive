@@ -156,5 +156,15 @@ class Constant {
   static const String screenRecordStatus = "screen_recording_status";
   static const String playerIMAAdsStatus = "video_player_ima_ads_status";
   static const String admobAdsStatus = "admob_status";
+  static const String themePresetKey = "theme_preset";
+  static const String themePrimaryColorKey = "theme_primary_color";
+  static const String themePrimaryDarkColorKey = "theme_primary_dark_color";
+  static const String themeAccentColorKey = "theme_accent_color";
+  static const String themeBgColorKey = "theme_bg_color";
+  static const String themeSurfaceColorKey = "theme_surface_color";
+  static const String themePanelBgColorKey = "theme_panel_bg_color";
+  static const String themeTitleTextColorKey = "theme_title_text_color";
+  static const String themeDescTextColorKey = "theme_desc_text_color";
+  static const String themeBtnTextColorKey = "theme_btn_text_color";
   /* ****** Dynamic App Setting Keys (general_setting API) */
 }

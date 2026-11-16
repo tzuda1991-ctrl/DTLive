@@ -40,6 +40,7 @@ import '../provider/videodownloadprovider.dart';
 import '../provider/episodeprovider.dart';
 import '../provider/findprovider.dart';
 import '../provider/generalprovider.dart';
+import '../provider/themeprovider.dart';
 import '../provider/homeprovider.dart';
 import '../provider/paymentprovider.dart';
 import '../provider/playerprovider.dart';
@@ -162,6 +163,7 @@ Future<void> main() async {
     'vi',
   ]);
 
+  await AppThemeManager.instance.loadFromSharedPre(SharedPre());
   runApp(
     MultiProvider(
       providers: [
@@ -170,6 +172,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => AvatarProvider()),
         ChangeNotifierProvider(create: (_) => FindProvider()),
         ChangeNotifierProvider(create: (_) => GeneralProvider()),
+        ChangeNotifierProvider.value(value: ThemeProvider.instance),
         ChangeNotifierProvider(create: (_) => HomeProvider()),
         ChangeNotifierProvider(create: (_) => PaymentProvider()),
         ChangeNotifierProvider(create: (_) => PlayerProvider()),
@@ -517,6 +520,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<ThemeProvider>();
     return LocaleBuilder(
       builder: (locale) {
         if (kIsWeb) {
@@ -534,10 +538,27 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       routerConfig: _router,
       theme:
           ThemeData(
+            brightness: AppThemeManager.instance.isLightTheme
+                ? Brightness.light
+                : Brightness.dark,
             primaryColor: colorPrimary,
             primaryColorDark: colorPrimaryDark,
             primaryColorLight: colorPrimary,
             scaffoldBackgroundColor: appBgColor,
+            cardColor: secondaryBgColor,
+            colorScheme: ColorScheme(
+              brightness: AppThemeManager.instance.isLightTheme
+                  ? Brightness.light
+                  : Brightness.dark,
+              primary: colorPrimary,
+              onPrimary: onPrimaryBtnTextColor,
+              secondary: colorAccent,
+              onSecondary: titleTextColor,
+              error: failureBG,
+              onError: white,
+              surface: secondaryBgColor,
+              onSurface: titleTextColor,
+            ),
             pageTransitionsTheme: PageTransitionsTheme(
               builders: kIsWeb
                   ? {
@@ -594,10 +615,27 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       navigatorObservers: [routeObserver], //HERE
       theme:
           ThemeData(
+            brightness: AppThemeManager.instance.isLightTheme
+                ? Brightness.light
+                : Brightness.dark,
             primaryColor: colorPrimary,
             primaryColorDark: colorPrimaryDark,
             primaryColorLight: colorPrimary,
             scaffoldBackgroundColor: appBgColor,
+            cardColor: secondaryBgColor,
+            colorScheme: ColorScheme(
+              brightness: AppThemeManager.instance.isLightTheme
+                  ? Brightness.light
+                  : Brightness.dark,
+              primary: colorPrimary,
+              onPrimary: onPrimaryBtnTextColor,
+              secondary: colorAccent,
+              onSecondary: titleTextColor,
+              error: failureBG,
+              onError: white,
+              surface: secondaryBgColor,
+              onSurface: titleTextColor,
+            ),
           ).copyWith(
             scrollbarTheme: const ScrollbarThemeData().copyWith(
               thumbColor: WidgetStateProperty.all(white),

@@ -1605,7 +1605,7 @@ class _PlayerVideoState extends State<PlayerVideo>
                         width: 1.5,
                       ), // [IMP-4]
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.lock_rounded,
                       color: colorAccent, // [IMP-4]
                       size: 20,

@@ -954,7 +954,7 @@ class AllPaymentState extends State<AllPayment>
                                 width: 70,
                                 height: 36,
                                 alignment: Alignment.center,
-                                child: const SizedBox(
+                                child: SizedBox(
                                   width: 20,
                                   height: 20,
                                   child: CircularProgressIndicator(
@@ -1415,7 +1415,7 @@ class AllPaymentState extends State<AllPayment>
                       child: Container(
                         width: 8,
                         height: 8,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           color: colorPrimary,
                           shape: BoxShape.circle,
                         ),
@@ -1616,7 +1616,7 @@ class AllPaymentState extends State<AllPayment>
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.add_circle_outline_rounded,
                       color: colorPrimary,
                       size: 18,
@@ -1657,7 +1657,7 @@ class AllPaymentState extends State<AllPayment>
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.account_balance_wallet_rounded,
                       color: appBgColor,
                       size: 20,

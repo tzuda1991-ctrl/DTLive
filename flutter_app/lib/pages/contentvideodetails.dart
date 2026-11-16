@@ -574,7 +574,7 @@ class ContentVideoDetailsState extends State<ContentVideoDetails>
                   expandOnTextTap: true,
                   collapseOnTextTap: true,
                   style: GoogleFonts.inter(
-                    textStyle: const TextStyle(
+                    textStyle: TextStyle(
                       fontSize: 13,
                       fontStyle: FontStyle.normal,
                       color: descTextColor,
@@ -1369,7 +1369,7 @@ class ContentVideoDetailsState extends State<ContentVideoDetails>
             maxWidth: MediaQuery.of(context).size.width,
           ),
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
+            gradient: LinearGradient(
               colors: [colorPrimary, colorPrimaryDark],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
@@ -1386,11 +1386,11 @@ class ContentVideoDetailsState extends State<ContentVideoDetails>
                   width: 15,
                   height: 15,
                   imagePath: "ic_play.png",
-                  color: appBgColor,
+                  color: onPrimaryBtnTextColor,
                 ),
                 const SizedBox(width: 15),
                 MyText(
-                  color: appBgColor,
+                  color: onPrimaryBtnTextColor,
                   text: "watch_trailer",
                   multilanguage: true,
                   textalign: TextAlign.start,
@@ -1424,7 +1424,7 @@ class ContentVideoDetailsState extends State<ContentVideoDetails>
             maxWidth: MediaQuery.of(context).size.width,
           ),
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
+            gradient: LinearGradient(
               colors: [colorPrimary, colorPrimaryDark],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
@@ -1446,11 +1446,11 @@ class ContentVideoDetailsState extends State<ContentVideoDetails>
                           width: 15,
                           height: 15,
                           imagePath: "ic_play.png",
-                          color: appBgColor,
+                          color: onPrimaryBtnTextColor,
                         ),
                         const SizedBox(width: 15),
                         MyText(
-                          color: appBgColor,
+                          color: onPrimaryBtnTextColor,
                           text: "watch_now",
                           multilanguage: true,
                           textalign: TextAlign.start,

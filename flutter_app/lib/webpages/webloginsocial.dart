@@ -144,7 +144,7 @@ class _WebLoginSocialState extends State<WebLoginSocial> {
         fit: StackFit.expand,
         children: [
           MyImage(
-            imagePath: "login_bg_land.png",
+            imagePath: "login_bg_land.webp",
             fit: BoxFit.cover,
             width: double.infinity,
             height: _sh,
@@ -549,7 +549,7 @@ class _WebLoginSocialState extends State<WebLoginSocial> {
               isCollapsed: true,
               border: InputBorder.none,
               hintStyle: kIsWeb
-                  ? const TextStyle(
+                  ? TextStyle(
                       color: descTextColor,
                       fontSize: 14,
                       fontWeight: FontWeight.w400,

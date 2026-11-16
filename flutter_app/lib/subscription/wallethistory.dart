@@ -85,7 +85,7 @@ class _WalletHistoryState extends State<WalletHistory> {
       elevation: 0,
       centerTitle: true,
       leading: IconButton(
-        icon: const Icon(
+        icon: Icon(
           Icons.arrow_back_ios_new_rounded,
           color: titleTextColor,
           size: 20,

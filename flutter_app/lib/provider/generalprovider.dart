@@ -10,6 +10,7 @@ import '../utils/constant.dart';
 import '../utils/sharedpre.dart';
 import '../webservice/apiservices.dart';
 import '../utils/utils.dart';
+import 'themeprovider.dart';
 
 class GeneralProvider extends ChangeNotifier {
   settings.GeneralSettingModel generalSettingModel =
@@ -48,6 +49,9 @@ class GeneralProvider extends ChangeNotifier {
                 generalSettingItem.value.toString(),
               );
             },
+          );
+          ThemeProvider.instance.applyFromGeneralSettings(
+            generalSettingModel.result ?? [],
           );
 
           appDescription =

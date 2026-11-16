@@ -91,6 +91,14 @@ class HomeController extends Controller
                 }
             }
 
+            $existingKeys = $list->pluck('key')->toArray();
+            $themeDefaults = \App\Http\Controllers\Admin\ThemeSettingController::defaults();
+            foreach ($themeDefaults as $tKey => $tVal) {
+                if (!in_array($tKey, $existingKeys, true)) {
+                    $list->push((object) ['key' => $tKey, 'value' => $tVal]);
+                }
+            }
+
             return $this->common->API_Response(200, __('api_msg.data_retrieved'), $list);
         } catch (Exception $e) {
             return response()->json(['status' => 400, 'errors' => $e->getMessage()]);

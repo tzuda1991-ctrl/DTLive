@@ -623,7 +623,7 @@ class WebContentVideoDetailsState extends State<WebContentVideoDetails>
                 right: 0,
                 top: 0,
                 height: Dimens.homeTabHeight + 16,
-                child: const DecoratedBox(
+                child: DecoratedBox(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
@@ -901,7 +901,7 @@ class WebContentVideoDetailsState extends State<WebContentVideoDetails>
             _metaDot(),
             Row(
               children: [
-                const Icon(Icons.star_rounded, color: colorPrimary, size: 15),
+                Icon(Icons.star_rounded, color: colorPrimary, size: 15),
                 const SizedBox(width: 4),
                 MyText(
                   color: colorPrimary,
@@ -1170,7 +1170,7 @@ class WebContentVideoDetailsState extends State<WebContentVideoDetails>
                             children: [
                               Icon(
                                 Icons.play_arrow_rounded,
-                                color: appBgColor,
+                                color: onPrimaryBtnTextColor,
                                 size: 22,
                               ),
                               const SizedBox(width: 10),

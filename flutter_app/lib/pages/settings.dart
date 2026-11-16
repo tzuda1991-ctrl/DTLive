@@ -1487,7 +1487,7 @@ class SettingsState extends State<Settings> with RouteAware {
                 scrollOnExpand: true,
                 scrollOnCollapse: false,
                 child: ExpandablePanel(
-                  theme: const ExpandableThemeData(
+                  theme: ExpandableThemeData(
                     headerAlignment: ExpandablePanelHeaderAlignment.center,
                     tapBodyToCollapse: true,
                     tapBodyToExpand: true,

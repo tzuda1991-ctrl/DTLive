@@ -789,7 +789,7 @@ class WebContentShowDetailsState extends State<WebContentShowDetails>
                 right: 0,
                 top: 0,
                 height: Dimens.homeTabHeight + 16,
-                child: const DecoratedBox(
+                child: DecoratedBox(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
@@ -1045,7 +1045,7 @@ class WebContentShowDetailsState extends State<WebContentShowDetails>
             _metaDot(),
             Row(
               children: [
-                const Icon(Icons.star_rounded, color: colorPrimary, size: 15),
+                Icon(Icons.star_rounded, color: colorPrimary, size: 15),
                 const SizedBox(width: 4),
                 MyText(
                   color: colorPrimary,
@@ -1295,13 +1295,13 @@ class WebContentShowDetailsState extends State<WebContentShowDetails>
                             children: [
                               Icon(
                                 Icons.play_arrow_rounded,
-                                color: appBgColor,
+                                color: onPrimaryBtnTextColor,
                                 size: 22,
                               ),
                               const SizedBox(width: 10),
                               Flexible(
                                 child: MyText(
-                                  color: appBgColor,
+                                  color: onPrimaryBtnTextColor,
                                   text: pos == -1
                                       ? "Watch Episode 1"
                                       : "Continue E${(pos + 1)}",
@@ -1477,7 +1477,7 @@ class WebContentShowDetailsState extends State<WebContentShowDetails>
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.play_circle_outlined,
                     color: colorAccent,
                     size: 18,
@@ -1909,7 +1909,7 @@ class WebContentShowDetailsState extends State<WebContentShowDetails>
             borderRadius: BorderRadius.circular(20),
             border: Border.all(color: colorPrimary.withValues(alpha: 0.25)),
           ),
-          child: const Text(
+          child: Text(
             "Director",
             style: TextStyle(
               fontSize: 11,

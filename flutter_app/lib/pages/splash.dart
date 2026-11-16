@@ -19,10 +19,10 @@ import '../widget/myimage.dart';
 import '../widget/mytext.dart';
 import '../utils/sharedpre.dart';
 
-const _lime = colorPrimary; // #BAFA34
-const _cyan = colorPrimaryDark;
+Color get _lime => colorPrimary;
+Color get _cyan => colorPrimaryDark;
 const _purple = complimentryColor; // #792BEC
-const _red = colorAccent; // #EC2B4E
+Color get _red => colorAccent;
 const _orange = warningBG;
 
 const _kNavFadeMs = 500;
@@ -652,7 +652,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     opacity: _lateFade.value.clamp(0, 1),
     child: Container(
       height: 2,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [transparent, _lime, _cyan, transparent], // [TASK-1]
           stops: [0.0, .38, .62, 1.0],
@@ -703,7 +703,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
                 child: Container(
                   width: size.width * .22,
                   height: 1,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [transparent, _lime], // [TASK-1]
                     ),
@@ -741,7 +741,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
                       Container(
                         width: 8,
                         height: 8,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: _lime,
                         ),
@@ -758,7 +758,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
                 child: Container(
                   width: size.width * .22,
                   height: 1,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [_lime, transparent], // [TASK-1]
                     ),
@@ -836,7 +836,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
         WidgetSpan(
           child: ShaderMask(
             shaderCallback: (b) =>
-                const LinearGradient(colors: [_lime, _cyan]).createShader(b),
+                LinearGradient(colors: [_lime, _cyan]).createShader(b),
             child: Text(
               grad,
               style: TextStyle(
@@ -856,7 +856,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
   // ── Colour-cycling bounce dots ──────────────────────────────────────────
   Widget _buildDots() {
     const phases = [.00, .20, .40, .60, .80];
-    const palette = [_lime, _cyan, _purple, _red, _orange];
+    final palette = [_lime, _cyan, _purple, _red, _orange];
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

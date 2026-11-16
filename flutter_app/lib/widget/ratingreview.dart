@@ -227,7 +227,7 @@ class _RatingReviewSummaryCardState extends State<RatingReviewSummaryCard> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ShaderMask(
-            shaderCallback: (bounds) => const LinearGradient(
+            shaderCallback: (bounds) => LinearGradient(
               colors: [colorPrimary, colorPrimaryDark],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -285,7 +285,7 @@ class _RatingReviewSummaryCardState extends State<RatingReviewSummaryCard> {
                   width: 10,
                   child: Text(
                     '$star',
-                    style: const TextStyle(fontSize: 11, color: descTextColor),
+                    style: TextStyle(fontSize: 11, color: descTextColor),
                     textAlign: TextAlign.right,
                   ),
                 ),
@@ -308,7 +308,7 @@ class _RatingReviewSummaryCardState extends State<RatingReviewSummaryCard> {
                   width: 30,
                   child: Text(
                     '$pct%',
-                    style: const TextStyle(fontSize: 11, color: descTextColor),
+                    style: TextStyle(fontSize: 11, color: descTextColor),
                     textAlign: TextAlign.right,
                   ),
                 ),
@@ -335,7 +335,7 @@ class _RatingReviewSummaryCardState extends State<RatingReviewSummaryCard> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             'Rate this',
             style: TextStyle(
               fontSize: 11,
@@ -391,7 +391,7 @@ class _RatingReviewSummaryCardState extends State<RatingReviewSummaryCard> {
                     width: 1,
                   ),
                 ),
-                child: const Text(
+                child: Text(
                   'Rate Now',
                   style: TextStyle(
                     fontSize: 11,
@@ -462,7 +462,7 @@ class _RatingReviewSummaryCardState extends State<RatingReviewSummaryCard> {
                       fontstyle: FontStyle.normal,
                     ),
                     const SizedBox(width: 4),
-                    const Icon(
+                    Icon(
                       Icons.arrow_forward_ios_rounded,
                       color: descTextColor,
                       size: 11,
@@ -691,7 +691,7 @@ class _RatingReviewPageState extends State<RatingReviewPage> {
                           // Summary card
                           _buildSummarySection(rp),
 
-                          const Divider(color: secondaryBgColor, thickness: 1),
+                          Divider(color: secondaryBgColor, thickness: 1),
 
                           // Rating input section
                           Padding(
@@ -704,13 +704,13 @@ class _RatingReviewPageState extends State<RatingReviewPage> {
                                 : _buildLoggedOutRatingPrompt(),
                           ),
 
-                          const Divider(color: secondaryBgColor, thickness: 1),
+                          Divider(color: secondaryBgColor, thickness: 1),
 
                           // Reviews list
                           _buildReviewsSection(rp),
 
                           if (reviewProvider.isLoadingMore)
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.all(16),
                               child: Center(
                                 child: CircularProgressIndicator(
@@ -962,7 +962,7 @@ class _RatingReviewPageState extends State<RatingReviewPage> {
               ),
             ),
             child: reviewProvider.isSubmitting
-                ? const SizedBox(
+                ? SizedBox(
                     width: 20,
                     height: 20,
                     child: CircularProgressIndicator(
@@ -992,7 +992,7 @@ class _RatingReviewPageState extends State<RatingReviewPage> {
           children: [
             Row(
               children: List.generate(5, (i) {
-                return const Padding(
+                return Padding(
                   padding: EdgeInsets.only(right: 6),
                   child: Icon(
                     Icons.star_outline_rounded,
@@ -1014,7 +1014,7 @@ class _RatingReviewPageState extends State<RatingReviewPage> {
         OutlinedButton(
           onPressed: () => Utils.checkLoginUser(context),
           style: OutlinedButton.styleFrom(
-            side: const BorderSide(color: colorPrimary),
+            side: BorderSide(color: colorPrimary),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
             ),
@@ -1093,7 +1093,7 @@ class _RatingReviewPageState extends State<RatingReviewPage> {
       child: Center(
         child: Column(
           children: [
-            const Icon(
+            Icon(
               Icons.star_outline_rounded,
               color: descTextColor,
               size: 64,
@@ -1321,7 +1321,7 @@ class RatingBreakdownRow extends StatelessWidget {
               child: LinearProgressIndicator(
                 value: pct / 100.0,
                 backgroundColor: grayDark,
-                valueColor: const AlwaysStoppedAnimation<Color>(colorPrimary),
+                valueColor: AlwaysStoppedAnimation<Color>(colorPrimary),
                 minHeight: 5,
               ),
             ),

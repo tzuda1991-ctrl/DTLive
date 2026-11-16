@@ -95,7 +95,7 @@ class IntroState extends State<Intro> {
                                           ?.length ??
                                       0),
                                   axisDirection: Axis.horizontal,
-                                  effect: const ExpandingDotsEffect(
+                                  effect: ExpandingDotsEffect(
                                     spacing: 6,
                                     radius: 5,
                                     dotWidth: 10,

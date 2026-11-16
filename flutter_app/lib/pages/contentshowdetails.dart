@@ -561,7 +561,7 @@ class ContentShowDetailsState extends State<ContentShowDetails>
                   expandOnTextTap: true,
                   collapseOnTextTap: true,
                   style: GoogleFonts.inter(
-                    textStyle: const TextStyle(
+                    textStyle: TextStyle(
                       fontSize: 13,
                       fontStyle: FontStyle.normal,
                       color: descTextColor,
@@ -1726,7 +1726,7 @@ class ContentShowDetailsState extends State<ContentShowDetails>
             maxWidth: MediaQuery.of(context).size.width,
           ),
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
+            gradient: LinearGradient(
               colors: [colorPrimary, colorPrimaryDark],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
@@ -1743,11 +1743,11 @@ class ContentShowDetailsState extends State<ContentShowDetails>
                   width: 15,
                   height: 15,
                   imagePath: "ic_play.png",
-                  color: appBgColor,
+                  color: onPrimaryBtnTextColor,
                 ),
                 const SizedBox(width: 15),
                 MyText(
-                  color: appBgColor,
+                  color: onPrimaryBtnTextColor,
                   text: "watch_trailer",
                   multilanguage: true,
                   textalign: TextAlign.start,
@@ -1783,7 +1783,7 @@ class ContentShowDetailsState extends State<ContentShowDetails>
                 maxWidth: MediaQuery.of(context).size.width,
               ),
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
+                gradient: LinearGradient(
                   colors: [colorPrimary, colorPrimaryDark],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
@@ -1805,11 +1805,11 @@ class ContentShowDetailsState extends State<ContentShowDetails>
                               width: 15,
                               height: 15,
                               imagePath: "ic_play.png",
-                              color: appBgColor,
+                              color: onPrimaryBtnTextColor,
                             ),
                             const SizedBox(width: 15),
                             MyText(
-                              color: appBgColor,
+                              color: onPrimaryBtnTextColor,
                               text: (showDetailsProvider.mCurrentEpiPos == -1)
                                   ? "Watch Episode 1"
                                   : "Continue Watching Episode ${(showDetailsProvider.mCurrentEpiPos + 1)}",

@@ -26,7 +26,7 @@ class MyImage extends StatelessWidget {
       return ShaderMask(
         blendMode: BlendMode.srcIn,
         shaderCallback: (bounds) {
-          return const LinearGradient(
+          return LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [colorPrimaryDark, colorPrimary],

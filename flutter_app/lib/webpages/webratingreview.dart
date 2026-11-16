@@ -99,7 +99,7 @@ class _WebRatingReviewState extends State<WebRatingReview> {
                   _buildContentHeader(isBig),
                   const SizedBox(height: 16),
                   _buildSummarySection(rp, isBig),
-                  const Divider(
+                  Divider(
                     color: secondaryBgColor,
                     thickness: 1,
                     height: 24,
@@ -108,14 +108,14 @@ class _WebRatingReviewState extends State<WebRatingReview> {
                     _buildRatingInputSection(rp, isBig)
                   else
                     _buildLoggedOutSection(isBig),
-                  const Divider(
+                  Divider(
                     color: secondaryBgColor,
                     thickness: 1,
                     height: 24,
                   ),
                   _buildReviewsSection(rp, isBig),
                   if (rp.isLoadingMore)
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.symmetric(vertical: 24),
                       child: Center(
                         child: CircularProgressIndicator(
@@ -339,7 +339,7 @@ class _WebRatingReviewState extends State<WebRatingReview> {
               ),
             ),
             child: rp.isSubmitting
-                ? const SizedBox(
+                ? SizedBox(
                     width: 20,
                     height: 20,
                     child: CircularProgressIndicator(
@@ -392,7 +392,7 @@ class _WebRatingReviewState extends State<WebRatingReview> {
         OutlinedButton(
           onPressed: () => Utils.checkLoginUser(context),
           style: OutlinedButton.styleFrom(
-            side: const BorderSide(color: colorPrimary),
+            side: BorderSide(color: colorPrimary),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
             ),
@@ -455,7 +455,7 @@ class _WebRatingReviewState extends State<WebRatingReview> {
             subVideoType: widget.subVideoType,
           ),
           style: OutlinedButton.styleFrom(
-            side: const BorderSide(color: colorPrimary),
+            side: BorderSide(color: colorPrimary),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
             ),
@@ -494,7 +494,7 @@ class _WebRatingReviewState extends State<WebRatingReview> {
       child: Center(
         child: Column(
           children: [
-            const Icon(
+            Icon(
               Icons.star_outline_rounded,
               color: descTextColor,
               size: 72,

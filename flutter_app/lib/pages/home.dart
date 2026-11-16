@@ -113,7 +113,7 @@ class HomeState extends State<Home> {
     super.initState();
     nestedScrollController.addListener(_nestedScrollListener);
     SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
+      SystemUiOverlayStyle(
         statusBarColor: transparent,
         systemNavigationBarColor: secondaryBgColor,
         statusBarBrightness: Brightness.dark,

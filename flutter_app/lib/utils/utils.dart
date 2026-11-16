@@ -1101,21 +1101,21 @@ class Utils {
                       // Text field
                       TextField(
                         controller: controller,
-                        style: const TextStyle(color: titleTextColor),
+                        style: TextStyle(color: titleTextColor),
                         decoration: InputDecoration(
                           hintText: Locales.string(ctx, 'referral_code_hint'),
-                          hintStyle: const TextStyle(color: descTextColor),
+                          hintStyle: TextStyle(color: descTextColor),
                           filled: true,
                           fillColor: lightBlack,
                           enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: colorPrimary,
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: colorPrimary,
                               width: 1.5,
                             ),
@@ -1138,13 +1138,13 @@ class Utils {
                           height: 56,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            gradient: const LinearGradient(
+                            gradient: LinearGradient(
                               colors: [colorPrimary, colorPrimaryDark],
                             ),
                             borderRadius: BorderRadius.circular(30),
                           ),
                           child: MyText(
-                            color: appBgColor,
+                            color: onPrimaryBtnTextColor,
                             text: 'next',
                             multilanguage: true,
                             fontsizeNormal: 17,
@@ -1852,7 +1852,7 @@ class Utils {
           filled: true,
           isDense: false,
           fillColor: transparent,
-          focusedBorder: const GradientOutlineInputBorder(
+          focusedBorder: GradientOutlineInputBorder(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -2171,7 +2171,7 @@ class Utils {
     if (isBuy) {
       return BoxDecoration(
         border: GradientBoxBorder(
-          gradient: const LinearGradient(
+          gradient: LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
             colors: <Color>[colorPrimary, colorPrimary],
@@ -2189,7 +2189,7 @@ class Utils {
     }
     return BoxDecoration(
       border: GradientBoxBorder(
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
           colors: <Color>[
@@ -2772,7 +2772,7 @@ class Utils {
   }
 
   static Widget pageLoader() {
-    return const Align(
+    return Align(
       alignment: Alignment.center,
       child: CircularProgressIndicator(color: colorPrimary, strokeWidth: 2.5),
     );

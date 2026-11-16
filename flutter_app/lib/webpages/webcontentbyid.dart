@@ -160,7 +160,7 @@ class WebVideosByIDState extends State<WebVideosByID> {
                     textAlign: TextAlign.start,
                     expandOnTextTap: true,
                     collapseOnTextTap: true,
-                    style: const TextStyle(
+                    style: TextStyle(
                       letterSpacing: 0.5,
                       wordSpacing: 0.2,
                       fontSize: 14,

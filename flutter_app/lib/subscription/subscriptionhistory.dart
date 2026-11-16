@@ -419,7 +419,7 @@ class TransactionStyle {
   final Color buttonColor;
   final Color buttonTextColor;
 
-  const TransactionStyle({
+  TransactionStyle({
     required this.backgroundColor,
     required this.borderColor,
     required this.titleTextColor,

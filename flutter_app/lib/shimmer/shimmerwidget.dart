@@ -6,13 +6,13 @@ class ShimmerWidget extends StatelessWidget {
   final double width;
   final double height;
   final ShapeBorder shapeBorder;
-  final Color shimmerBgColor;
+  final Color? shimmerBgColor;
 
 // Rectangular
   const ShimmerWidget.rectangular(
       {super.key,
       this.width = double.infinity,
-      this.shimmerBgColor = lightBlack,
+      this.shimmerBgColor,
       required this.height})
       : shapeBorder = const RoundedRectangleBorder();
 
@@ -20,7 +20,7 @@ class ShimmerWidget extends StatelessWidget {
   const ShimmerWidget.circular({
     super.key,
     this.width = double.infinity,
-    this.shimmerBgColor = lightBlack,
+    this.shimmerBgColor,
     required this.height,
     this.shapeBorder = const CircleBorder(),
   });
@@ -29,7 +29,7 @@ class ShimmerWidget extends StatelessWidget {
   const ShimmerWidget.roundcorner({
     super.key,
     this.width = double.infinity,
-    this.shimmerBgColor = lightBlack,
+    this.shimmerBgColor,
     required this.height,
     this.shapeBorder = const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(8))),
@@ -39,7 +39,7 @@ class ShimmerWidget extends StatelessWidget {
   const ShimmerWidget.roundrectborder({
     super.key,
     this.width = double.infinity,
-    this.shimmerBgColor = lightBlack,
+    this.shimmerBgColor,
     required this.height,
     this.shapeBorder = const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(4))),
@@ -57,7 +57,7 @@ class ShimmerWidget extends StatelessWidget {
           width: width,
           height: height,
           decoration: ShapeDecoration(
-            color: shimmerBgColor,
+            color: shimmerBgColor ?? lightBlack,
             shape: shapeBorder,
           ),
         ),

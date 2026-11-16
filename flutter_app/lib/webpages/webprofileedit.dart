@@ -257,7 +257,7 @@ class _WebProfileEditState extends State<WebProfileEdit> {
                 width: MediaQuery.of(context).size.width,
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
+                  gradient: LinearGradient(
                     colors: [colorPrimary, colorPrimaryDark],
                     begin: FractionalOffset(0.0, 0.0),
                     end: FractionalOffset(1.0, 0.0),

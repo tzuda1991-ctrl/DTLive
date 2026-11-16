@@ -938,7 +938,7 @@ class SubscriptionState extends State<Subscription> {
             decoration: BoxDecoration(
               gradient: locked
                   ? null
-                  : const LinearGradient(
+                  : LinearGradient(
                       colors: [colorPrimary, colorPrimaryDark],
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,

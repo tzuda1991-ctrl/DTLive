@@ -43,7 +43,7 @@ class MyText extends StatelessWidget {
       if (withShaderMask != null && withShaderMask == true) {
         return ShaderMask(
           shaderCallback: (bounds) {
-            return const LinearGradient(
+            return LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [colorPrimary, colorPrimaryDark],
@@ -151,7 +151,7 @@ class MyText extends StatelessWidget {
       if (withShaderMask != null && withShaderMask == true) {
         return ShaderMask(
           shaderCallback: (bounds) {
-            return const LinearGradient(
+            return LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [colorPrimary, colorPrimaryDark],

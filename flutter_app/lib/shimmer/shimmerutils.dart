@@ -194,7 +194,7 @@ class ShimmerUtils {
               /* Dot indicator */
               Padding(
                 padding: const EdgeInsets.fromLTRB(5, 14, 5, 5),
-                child: const AnimatedSmoothIndicator(
+                child: AnimatedSmoothIndicator(
                   count: 5,
                   activeIndex: 2,
                   effect: ScrollingDotsEffect(
@@ -336,7 +336,7 @@ class ShimmerUtils {
           Positioned(
             bottom: bannerH / 5,
             right: 80,
-            child: const AnimatedSmoothIndicator(
+            child: AnimatedSmoothIndicator(
               count: 5,
               activeIndex: 2,
               effect: ScrollingDotsEffect(
@@ -360,7 +360,7 @@ class ShimmerUtils {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
           child: ShimmerWidget.roundrectborder(
             height: 15,
@@ -983,7 +983,7 @@ class ShimmerUtils {
           children: [
             line(width: 50, height: 13),
             const SizedBox(width: 8),
-            const ShimmerWidget.circular(
+            ShimmerWidget.circular(
               height: 4,
               width: 4,
               shimmerBgColor: shimmerItemColor,
@@ -1243,7 +1243,7 @@ class ShimmerUtils {
                         children: [
                           line(width: 55, height: 13),
                           const SizedBox(width: 8),
-                          const ShimmerWidget.circular(
+                          ShimmerWidget.circular(
                             height: 4,
                             width: 4,
                             shimmerBgColor: shimmerItemColor,
@@ -1767,7 +1767,7 @@ class ShimmerUtils {
                   width: MediaQuery.of(context).size.width,
                   padding: const EdgeInsets.only(left: 18, right: 18),
                   constraints: const BoxConstraints(minHeight: 55),
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ShimmerWidget.roundrectborder(
@@ -1809,7 +1809,7 @@ class ShimmerUtils {
                       constraints: const BoxConstraints(minHeight: 30),
                       width: MediaQuery.of(context).size.width,
                       margin: const EdgeInsets.only(bottom: 10),
-                      child: const Row(
+                      child: Row(
                         children: [
                           Expanded(
                             child: ShimmerWidget.roundrectborder(
@@ -1914,7 +1914,7 @@ class ShimmerUtils {
                         width: MediaQuery.of(context).size.width,
                         padding: const EdgeInsets.only(left: 18, right: 18),
                         constraints: const BoxConstraints(minHeight: 55),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             ShimmerWidget.roundrectborder(
@@ -1950,7 +1950,7 @@ class ShimmerUtils {
                         height: 30,
                         width: MediaQuery.of(context).size.width,
                         margin: const EdgeInsets.only(bottom: 10),
-                        child: const Row(
+                        child: Row(
                           children: [
                             Expanded(
                               child: ShimmerWidget.roundrectborder(
@@ -1977,7 +1977,7 @@ class ShimmerUtils {
                         height: 30,
                         width: MediaQuery.of(context).size.width,
                         margin: const EdgeInsets.only(bottom: 10),
-                        child: const Row(
+                        child: Row(
                           children: [
                             Expanded(
                               child: ShimmerWidget.roundrectborder(
@@ -2004,7 +2004,7 @@ class ShimmerUtils {
                         height: 30,
                         width: MediaQuery.of(context).size.width,
                         margin: const EdgeInsets.only(bottom: 10),
-                        child: const Row(
+                        child: Row(
                           children: [
                             Expanded(
                               child: ShimmerWidget.roundrectborder(
@@ -2031,7 +2031,7 @@ class ShimmerUtils {
                         height: 30,
                         width: MediaQuery.of(context).size.width,
                         margin: const EdgeInsets.only(bottom: 10),
-                        child: const Row(
+                        child: Row(
                           children: [
                             Expanded(
                               child: ShimmerWidget.roundrectborder(
@@ -2092,7 +2092,7 @@ class ShimmerUtils {
                         width: MediaQuery.of(context).size.width,
                         padding: const EdgeInsets.only(left: 18, right: 18),
                         constraints: const BoxConstraints(minHeight: 55),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             ShimmerWidget.roundrectborder(
@@ -2128,7 +2128,7 @@ class ShimmerUtils {
                         height: 30,
                         width: MediaQuery.of(context).size.width,
                         margin: const EdgeInsets.only(bottom: 10),
-                        child: const Row(
+                        child: Row(
                           children: [
                             Expanded(
                               child: ShimmerWidget.roundrectborder(
@@ -2155,7 +2155,7 @@ class ShimmerUtils {
                         height: 30,
                         width: MediaQuery.of(context).size.width,
                         margin: const EdgeInsets.only(bottom: 10),
-                        child: const Row(
+                        child: Row(
                           children: [
                             Expanded(
                               child: ShimmerWidget.roundrectborder(
@@ -2182,7 +2182,7 @@ class ShimmerUtils {
                         height: 30,
                         width: MediaQuery.of(context).size.width,
                         margin: const EdgeInsets.only(bottom: 10),
-                        child: const Row(
+                        child: Row(
                           children: [
                             Expanded(
                               child: ShimmerWidget.roundrectborder(
@@ -2209,7 +2209,7 @@ class ShimmerUtils {
                         height: 30,
                         width: MediaQuery.of(context).size.width,
                         margin: const EdgeInsets.only(bottom: 10),
-                        child: const Row(
+                        child: Row(
                           children: [
                             Expanded(
                               child: ShimmerWidget.roundrectborder(
@@ -2270,7 +2270,7 @@ class ShimmerUtils {
                         width: MediaQuery.of(context).size.width,
                         padding: const EdgeInsets.only(left: 18, right: 18),
                         constraints: const BoxConstraints(minHeight: 55),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             ShimmerWidget.roundrectborder(
@@ -2306,7 +2306,7 @@ class ShimmerUtils {
                         height: 30,
                         width: MediaQuery.of(context).size.width,
                         margin: const EdgeInsets.only(bottom: 10),
-                        child: const Row(
+                        child: Row(
                           children: [
                             Expanded(
                               child: ShimmerWidget.roundrectborder(
@@ -2333,7 +2333,7 @@ class ShimmerUtils {
                         height: 30,
                         width: MediaQuery.of(context).size.width,
                         margin: const EdgeInsets.only(bottom: 10),
-                        child: const Row(
+                        child: Row(
                           children: [
                             Expanded(
                               child: ShimmerWidget.roundrectborder(
@@ -2360,7 +2360,7 @@ class ShimmerUtils {
                         height: 30,
                         width: MediaQuery.of(context).size.width,
                         margin: const EdgeInsets.only(bottom: 10),
-                        child: const Row(
+                        child: Row(
                           children: [
                             Expanded(
                               child: ShimmerWidget.roundrectborder(
@@ -2387,7 +2387,7 @@ class ShimmerUtils {
                         height: 30,
                         width: MediaQuery.of(context).size.width,
                         margin: const EdgeInsets.only(bottom: 10),
-                        child: const Row(
+                        child: Row(
                           children: [
                             Expanded(
                               child: ShimmerWidget.roundrectborder(
