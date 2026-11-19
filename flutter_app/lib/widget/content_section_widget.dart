@@ -31,6 +31,7 @@ class ContentSectionWidget extends StatelessWidget {
   final bool showScrollArrows;
   final double? horizontalPadding;
   final double? cardRadius;
+  final Color? rankBadgeColor;
   final ScrollController? scrollController;
   final Function(list.Datum datum, int index) onItemTap;
   final Widget? Function(list.Datum datum, int index)? continueWatchingBuilder;
@@ -43,6 +44,7 @@ class ContentSectionWidget extends StatelessWidget {
     this.showScrollArrows = true,
     this.horizontalPadding,
     this.cardRadius,
+    this.rankBadgeColor,
     this.scrollController,
     this.continueWatchingBuilder,
   });
@@ -243,13 +245,39 @@ class ContentSectionWidget extends StatelessWidget {
                 onTap: () => onItemTap(datum, index),
                 continueWatching: null,
               ),
-              _IndexNumber(
-                number: index + 1,
-                fontSize: fontSize,
-                strokeWidth: strokeW,
-                offsetX: offsetX,
-                offsetY: offsetY,
-              ),
+              if (rankBadgeColor case final badgeColor?)
+                PositionedDirectional(
+                  top: 8,
+                  start: 8,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: badgeColor,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
+                      child: Text(
+                        '${index + 1}',
+                        style: const TextStyle(
+                          color: black,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              else
+                _IndexNumber(
+                  number: index + 1,
+                  fontSize: fontSize,
+                  strokeWidth: strokeW,
+                  offsetX: offsetX,
+                  offsetY: offsetY,
+                ),
             ],
           );
         },

@@ -574,121 +574,48 @@ class HomeState extends State<Home> {
   }
 
   Widget _buildAppBarSubscribeBtn() {
+    if (Constant.userIsKid != false || subscriptionStatus != "1") {
+      return const SizedBox.shrink();
+    }
+
     return Consumer<ProfileProvider>(
       builder: (context, profileProvider, child) {
-        if (Constant.userIsKid == false &&
-            (subscriptionStatus != null && subscriptionStatus == "1")) {
-          return Container(
-            alignment: Alignment.centerLeft,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(40),
-              onTap: () async {
-                if (Constant.userID != null) {
-                  Utils.openSubscription(
-                    context: context,
-                    oldPage: RoutesConstant.homePage,
-                  );
-                } else {
-                  Utils.openLogin(context: context, newPage: "");
-                }
-              },
-              child: FittedBox(
-                child: Container(
-                  height: 30,
-                  alignment: Alignment.centerLeft,
-                  decoration: Utils.subscribeGradBorderBG(
-                    (profileProvider.profileModel.result != null &&
-                        (profileProvider.profileModel.result?.length ?? 0) >
-                            0 &&
-                        (profileProvider.profileModel.result?[0].isBuy ?? 0) ==
-                            1),
-                    40,
-                    1,
-                  ),
-                  padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      if (profileProvider.profileModel.result != null &&
-                          (profileProvider.profileModel.result?.length ?? 0) >
-                              0 &&
-                          (profileProvider.profileModel.result?[0].isBuy ??
-                                  0) !=
-                              1)
-                        MyImage(
-                          width: 15,
-                          height: 15,
-                          imagePath: "ic_subscribe.png",
-                          withShaderMask: true,
-                        ),
-                      if (profileProvider.profileModel.result != null &&
-                          (profileProvider.profileModel.result?.length ?? 0) >
-                              0 &&
-                          (profileProvider.profileModel.result?[0].isBuy ??
-                                  0) !=
-                              1)
-                        const SizedBox(width: 4),
-                      MyText(
-                        color:
-                            (profileProvider.profileModel.result != null &&
-                                (profileProvider.profileModel.result?.length ??
-                                        0) >
-                                    0 &&
-                                (profileProvider
-                                            .profileModel
-                                            .result?[0]
-                                            .isBuy ??
-                                        0) ==
-                                    1)
-                            ? white
-                            : colorPrimary,
-                        text:
-                            (profileProvider.profileModel.result != null &&
-                                (profileProvider.profileModel.result?.length ??
-                                        0) >
-                                    0 &&
-                                (profileProvider
-                                            .profileModel
-                                            .result?[0]
-                                            .isBuy ??
-                                        0) ==
-                                    1)
-                            ? (profileProvider
-                                      .profileModel
-                                      .result?[0]
-                                      .packageName ??
-                                  "")
-                            : "subscribe",
-                        multilanguage:
-                            (profileProvider.profileModel.result != null &&
-                                (profileProvider.profileModel.result?.length ??
-                                        0) >
-                                    0 &&
-                                (profileProvider
-                                            .profileModel
-                                            .result?[0]
-                                            .isBuy ??
-                                        0) ==
-                                    1)
-                            ? false
-                            : true,
-                        fontsizeNormal: 12,
-                        fontsizeWeb: 15,
-                        maxline: 1,
-                        fontweight: FontWeight.w700,
-                        textalign: TextAlign.start,
-                        overflow: TextOverflow.ellipsis,
-                        fontstyle: FontStyle.normal,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          );
-        } else {
-          return const SizedBox.shrink();
-        }
+        final profiles = profileProvider.profileModel.result;
+        final profile = profiles != null && profiles.isNotEmpty
+            ? profiles.first
+            : null;
+        final isSubscribed = profile?.isBuy == 1;
+
+        return OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            foregroundColor: _homeGold,
+            backgroundColor: _homeSurface,
+            side: BorderSide(color: _homeGold.withValues(alpha: 0.48)),
+            padding: const EdgeInsets.symmetric(horizontal: 14),
+          ),
+          onPressed: () {
+            if (Constant.userID != null) {
+              Utils.openSubscription(
+                context: context,
+                oldPage: RoutesConstant.homePage,
+              );
+            } else {
+              Utils.openLogin(context: context, newPage: "");
+            }
+          },
+          child: MyText(
+            color: _homeGold,
+            text: isSubscribed ? (profile?.packageName ?? "") : "subscribe",
+            multilanguage: !isSubscribed,
+            fontsizeNormal: 12,
+            fontsizeWeb: 14,
+            maxline: 1,
+            fontweight: FontWeight.w700,
+            textalign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+            fontstyle: FontStyle.normal,
+          ),
+        );
       },
     );
   }
@@ -981,31 +908,6 @@ class HomeState extends State<Home> {
     return Column(
       children: [
         /* Banner */
-        if (!sectionDataProvider.loadingBanner &&
-            sectionDataProvider.sectionBannerModel.status == 200 &&
-            (sectionDataProvider.sectionBannerModel.result?.isNotEmpty ??
-                false))
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(
-              left: 13,
-              right: 13,
-              top: MediaQuery.of(context).padding.top + 30,
-              bottom: 12,
-            ),
-            child: MyText(
-              color: _homeGold,
-              text: "for_you",
-              textalign: TextAlign.start,
-              fontsizeNormal: 14,
-              fontweight: FontWeight.w700,
-              fontsizeWeb: 19,
-              multilanguage: true,
-              maxline: 1,
-              overflow: TextOverflow.ellipsis,
-              fontstyle: FontStyle.normal,
-            ),
-          ),
         if (sectionDataProvider.loadingBanner)
           Padding(
             padding: EdgeInsets.only(
@@ -1043,175 +945,210 @@ class HomeState extends State<Home> {
   /* **************** Type END */
 
   /* Banner START ************** */
-  Widget _mobileHomeBanner(List<banner.Result>? sectionBannerList) {
-    if ((sectionBannerList?.length ?? 0) == 0) return const SizedBox.shrink();
-    final list = sectionBannerList!;
-    return SizedBox(
-      height: Dimens.getBannerHeight(context),
-      child: CarouselSlider.builder(
-        itemCount: list.length,
-        carouselController: carouselController,
-        options: CarouselOptions(
-          initialPage: 0,
-          height: Dimens.getBannerHeight(context),
-          enlargeCenterPage: false,
-          enableInfiniteScroll: list.length > 1,
-          autoPlay: list.length > 1,
-          autoPlayCurve: Curves.easeInOutCubic,
-          autoPlayInterval: Duration(milliseconds: Constant.bannerDuration),
-          autoPlayAnimationDuration: Duration(
-            milliseconds: Constant.animationDuration,
-          ),
-          viewportFraction: 1,
-          padEnds: true,
-          onPageChanged: (val, _) async {
-            sectionDataProvider.setCurrentBanner(val);
-          },
-        ),
-        itemBuilder: (BuildContext context, int index, int pageViewIndex) {
-          final imageUrl =
-              (list[index].thumbnail == null ||
-                  (list[index].thumbnail ?? "").isEmpty ||
-                  (list[index].thumbnail ?? "").contains("no_img"))
-              ? (list[index].landscape ?? "")
-              : (list[index].thumbnail ?? "");
-          final isLive =
-              (list[index].videoUploadType ?? "") == "live_stream_url";
-          return Material(
-            color: _homeSurface,
-            clipBehavior: Clip.antiAlias,
-            child: InkWell(
-              focusColor: white,
-              onTap: () {
+  Widget _mobileHomeBanner(List<banner.Result>? items) {
+    if (items == null || items.isEmpty) return const SizedBox.shrink();
+
+    final screen = MediaQuery.sizeOf(context);
+    final heroHeight = (screen.height * 0.52).clamp(310.0, 510.0).toDouble();
+    final activeIndex = (sectionDataProvider.cBannerIndex ?? 0).clamp(
+      0,
+      items.length - 1,
+    );
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 12, bottom: 10),
+      child: Column(
+        children: [
+          CarouselSlider.builder(
+            itemCount: items.length,
+            carouselController: carouselController,
+            options: CarouselOptions(
+              height: heroHeight,
+              viewportFraction: items.length > 1 ? 0.92 : 1,
+              enableInfiniteScroll: items.length > 1,
+              autoPlay: items.length > 1,
+              autoPlayCurve: Curves.easeInOutCubic,
+              autoPlayInterval: Duration(milliseconds: Constant.bannerDuration),
+              autoPlayAnimationDuration: Duration(
+                milliseconds: Constant.animationDuration,
+              ),
+              onPageChanged: (index, _) =>
+                  sectionDataProvider.setCurrentBanner(index),
+            ),
+            itemBuilder: (context, index, _) {
+              final item = items[index];
+              final poster = item.thumbnail ?? "";
+              final imageUrl = poster.isEmpty || poster.contains("no_img")
+                  ? (item.landscape ?? "")
+                  : poster;
+              final isLive = item.videoUploadType == "live_stream_url";
+              void openDetails() {
                 openDetailPage(
-                  list[index].id ?? 0,
-                  list[index].subVideoType ?? 0,
-                  list[index].videoType ?? 0,
-                  list[index].typeId ?? 0,
+                  item.id ?? 0,
+                  item.subVideoType ?? 0,
+                  item.videoType ?? 0,
+                  item.typeId ?? 0,
                 );
-              },
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  /* Poster image */
-                  MyNetworkImage(imageUrl: imageUrl, fit: BoxFit.cover),
-                  /* Top gradient */
-                  Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.center,
-                        colors: [
-                          black.withValues(alpha: 0.55),
-                          black.withValues(alpha: 0.20),
-                          black.withValues(alpha: 0.05),
-                          transparent,
-                        ],
-                        stops: const [0.0, 0.25, 0.50, 1.0],
-                      ),
-                    ),
+              }
+
+              return Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: items.length > 1 ? 5 : 14,
+                ),
+                child: Material(
+                  color: _homeSurface,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
+                    side: const BorderSide(color: _homeBorder),
                   ),
-                  /* Bottom gradient */
-                  Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                        colors: [
-                          _homeBackground,
-                          black.withValues(alpha: 0.70),
-                          black.withValues(alpha: 0.50),
-                          black.withValues(alpha: 0.28),
-                          black.withValues(alpha: 0.08),
-                          transparent,
-                        ],
-                        stops: const [0.0, 0.18, 0.38, 0.58, 0.75, 1.0],
-                      ),
-                    ),
-                  ),
-                  /* Badge — top-left */
-                  Positioned(
-                    top: 14,
-                    left: 14,
-                    child: _buildBannerBadge(list[index]),
-                  ),
-                  /* Title + Metadata — bottom-left :: Action buttons — bottom-right */
-                  Positioned(
-                    left: 20,
-                    right: 20,
-                    bottom: 16,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                  clipBehavior: Clip.antiAlias,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: openDetails,
+                          child: Stack(
+                            fit: StackFit.expand,
                             children: [
-                              MyText(
-                                color: white,
-                                text: (list[index].name ?? "").isNotEmpty
-                                    ? (list[index].name ?? "")
-                                    : "-",
-                                textalign: TextAlign.start,
-                                fontsizeNormal: 30,
-                                fontsizeWeb: 32,
-                                fontweight: FontWeight.w800,
-                                multilanguage: false,
-                                maxline: 2,
-                                overflow: TextOverflow.ellipsis,
-                                fontstyle: FontStyle.normal,
-                                isShadowText: true,
+                              MyNetworkImage(
+                                imageUrl: imageUrl,
+                                fit: BoxFit.cover,
                               ),
-                              const SizedBox(height: 3),
-                              _buildBannerMetaRow(list[index]),
+                              const DecoratedBox(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.center,
+                                    end: Alignment.bottomCenter,
+                                    colors: [Colors.transparent, _homeSurface],
+                                  ),
+                                ),
+                              ),
+                              PositionedDirectional(
+                                top: 14,
+                                end: 14,
+                                child: _buildBannerBadge(item),
+                              ),
                             ],
                           ),
                         ),
-                        const SizedBox(width: 10),
-                        Column(
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (!isLive) ...[
-                              _buildBannerCircleBtn(
-                                iconPath: (list[index].isBookmark ?? 0) == 1
-                                    ? "ic_tick.png"
-                                    : "ic_plus.png",
-                                onTap: () async {
-                                  if (Constant.userID != null) {
-                                    await sectionDataProvider.setBookMark(
-                                      context,
-                                      index,
-                                    );
-                                  } else {
-                                    await Utils.openLogin(
-                                      context: context,
-                                      newPage: "",
-                                    );
-                                  }
-                                },
+                            MyText(
+                              color: _homeGold,
+                              text: "for_you",
+                              multilanguage: true,
+                              fontsizeNormal: 12,
+                              fontsizeWeb: 12,
+                              maxline: 1,
+                              fontweight: FontWeight.w700,
+                              textalign: TextAlign.start,
+                              overflow: TextOverflow.ellipsis,
+                              fontstyle: FontStyle.normal,
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              item.name ?? "",
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                color: white,
+                                fontSize: 27,
+                                fontWeight: FontWeight.w800,
+                                height: 1.08,
                               ),
-                              const SizedBox(height: 8),
-                            ],
-                            _buildBannerCircleBtn(
-                              iconPath: "ic_play.png",
-                              primary: true,
-                              onTap: () {
-                                openDetailPage(
-                                  list[index].id ?? 0,
-                                  list[index].subVideoType ?? 0,
-                                  list[index].videoType ?? 0,
-                                  list[index].typeId ?? 0,
-                                );
-                              },
+                            ),
+                            const SizedBox(height: 6),
+                            _buildBannerMetaRow(item),
+                            const SizedBox(height: 12),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: FilledButton.icon(
+                                    onPressed: openDetails,
+                                    style: FilledButton.styleFrom(
+                                      backgroundColor: _homeGold,
+                                      foregroundColor: _homeBackground,
+                                      minimumSize: const Size(0, 48),
+                                    ),
+                                    icon: const Icon(Icons.play_arrow_rounded),
+                                    label: MyText(
+                                      color: _homeBackground,
+                                      text: "watch_now",
+                                      multilanguage: true,
+                                      fontsizeNormal: 14,
+                                      fontsizeWeb: 14,
+                                      maxline: 1,
+                                      fontweight: FontWeight.w800,
+                                      textalign: TextAlign.center,
+                                      overflow: TextOverflow.ellipsis,
+                                      fontstyle: FontStyle.normal,
+                                    ),
+                                  ),
+                                ),
+                                if (!isLive) ...[
+                                  const SizedBox(width: 10),
+                                  _buildBannerCircleBtn(
+                                    iconPath: (item.isBookmark ?? 0) == 1
+                                        ? "ic_tick.png"
+                                        : "ic_plus.png",
+                                    onTap: () async {
+                                      if (Constant.userID != null) {
+                                        await sectionDataProvider.setBookMark(
+                                          context,
+                                          index,
+                                        );
+                                      } else {
+                                        await Utils.openLogin(
+                                          context: context,
+                                          newPage: "",
+                                        );
+                                      }
+                                    },
+                                  ),
+                                ],
+                              ],
                             ),
                           ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
+              );
+            },
+          ),
+          if (items.length > 1)
+            Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: ExcludeSemantics(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    (items.length > 7) ? 7 : items.length,
+                    (index) {
+                      final count = items.length > 7 ? 7 : items.length;
+                      final selected = index == (activeIndex % count);
+                      return AnimatedContainer(
+                        duration: const Duration(milliseconds: 200),
+                        margin: const EdgeInsets.symmetric(horizontal: 3),
+                        width: selected ? 18 : 6,
+                        height: 6,
+                        decoration: BoxDecoration(
+                          color: selected ? _homeGold : _homeBorder,
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ),
             ),
-          );
-        },
+        ],
       ),
     );
   }
@@ -1307,7 +1244,6 @@ class HomeState extends State<Home> {
   Widget _buildBannerCircleBtn({
     required String iconPath,
     required VoidCallback onTap,
-    bool primary = false,
   }) {
     return InkWell(
       onTap: onTap,
@@ -1316,15 +1252,12 @@ class HomeState extends State<Home> {
         width: 48,
         height: 48,
         decoration: BoxDecoration(
-          color: primary ? _homeGold : _homeSurface,
+          color: _homeSurface,
           shape: BoxShape.circle,
-          border: Border.all(color: primary ? _homeGold : _homeBorder),
+          border: Border.all(color: _homeBorder),
         ),
         padding: const EdgeInsets.all(12),
-        child: MyImage(
-          imagePath: iconPath,
-          color: primary ? _homeBackground : white,
-        ),
+        child: MyImage(imagePath: iconPath, color: _homeGold),
       ),
     );
   }
@@ -1772,6 +1705,7 @@ class HomeState extends State<Home> {
     return ContentSectionWidget(
       items: sectionDataList,
       layout: ContentCardLayout.indexLandscape,
+      rankBadgeColor: _homeGold,
       showScrollArrows: false,
       horizontalPadding: 14,
       cardRadius: 14,
@@ -1854,6 +1788,7 @@ class HomeState extends State<Home> {
     return ContentSectionWidget(
       items: sectionDataList,
       layout: ContentCardLayout.indexPortrait,
+      rankBadgeColor: _homeGold,
       showScrollArrows: false,
       horizontalPadding: 14,
       cardRadius: 14,
