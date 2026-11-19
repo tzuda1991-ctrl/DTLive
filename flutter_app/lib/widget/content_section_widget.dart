@@ -30,6 +30,7 @@ class ContentSectionWidget extends StatelessWidget {
   final ContentCardLayout layout;
   final bool showScrollArrows;
   final double? horizontalPadding;
+  final double? cardRadius;
   final ScrollController? scrollController;
   final Function(list.Datum datum, int index) onItemTap;
   final Widget? Function(list.Datum datum, int index)? continueWatchingBuilder;
@@ -41,6 +42,7 @@ class ContentSectionWidget extends StatelessWidget {
     required this.onItemTap,
     this.showScrollArrows = true,
     this.horizontalPadding,
+    this.cardRadius,
     this.scrollController,
     this.continueWatchingBuilder,
   });
@@ -186,6 +188,7 @@ class ContentSectionWidget extends StatelessWidget {
             cardH: cardH,
             imageUrl: _imageUrl(datum),
             isBig: big,
+            radius: cardRadius,
             onTap: () => onItemTap(datum, index),
             continueWatching: continueWatchingBuilder?.call(datum, index),
           );
@@ -236,6 +239,7 @@ class ContentSectionWidget extends StatelessWidget {
                 cardH: cardH,
                 imageUrl: _imageUrl(datum),
                 isBig: big,
+                radius: cardRadius,
                 onTap: () => onItemTap(datum, index),
                 continueWatching: null,
               ),
@@ -265,6 +269,7 @@ class _ContentCard extends StatefulWidget {
   final double cardH;
   final String imageUrl;
   final bool isBig;
+  final double? radius;
   final VoidCallback onTap;
   final Widget? continueWatching;
 
@@ -275,6 +280,7 @@ class _ContentCard extends StatefulWidget {
     required this.cardH,
     required this.imageUrl,
     required this.isBig,
+    this.radius,
     required this.onTap,
     this.continueWatching,
   });
@@ -314,7 +320,7 @@ class _ContentCardState extends State<_ContentCard>
 
   @override
   Widget build(BuildContext context) {
-    final double radius = widget.isBig ? 10.0 : 8.0;
+    final double radius = widget.radius ?? (widget.isBig ? 10.0 : 8.0);
     final String name = widget.datum.name?.toString() ?? "";
     final bool showTitle = (widget.datum.isTitle ?? 0) != 0 && name.isNotEmpty;
     final double btnSize = widget.isBig ? 52.0 : 44.0;

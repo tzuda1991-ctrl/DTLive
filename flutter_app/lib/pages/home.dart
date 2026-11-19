@@ -54,6 +54,11 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
+  static const _homeBackground = Color(0xFF141417);
+  static const _homeSurface = Color(0xFF222226);
+  static const _homeBorder = Color(0xFF39373B);
+  static const _homeGold = Color(0xFFF2CD85);
+
   late HomeProvider homeProvider;
   late BottombarProvider bottombarProvider;
   late SectionDataProvider sectionDataProvider;
@@ -445,7 +450,7 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: appBgColor,
+      backgroundColor: _homeBackground,
       body: NotificationListener<ScrollNotification>(
         onNotification: (scrollNotification) {
           if (!nestedScrollController.hasClients) return false;
@@ -487,20 +492,14 @@ class HomeState extends State<Home> {
       centerTitle: false,
       automaticallyImplyLeading: false,
       toolbarHeight: kToolbarHeight,
+      surfaceTintColor: transparent,
       titleSpacing: 10,
-      backgroundColor: transparent,
-      flexibleSpace: AnimatedOpacity(
-        duration: const Duration(milliseconds: 300),
-        opacity: bottombarProvider.isShowBottombar ? 0.0 : 1.0,
-        child: ClipRRect(
-          child: Container(color: appBgColor.withValues(alpha: 0.8)),
-        ),
-      ),
+      backgroundColor: _homeBackground,
       leading: Container(
         height: kToolbarHeight,
         alignment: Alignment.centerLeft,
-        padding: EdgeInsets.zero,
-        child: MyImage(imagePath: "appicon.png"),
+        padding: const EdgeInsetsDirectional.only(start: 12),
+        child: MyImage(imagePath: "appicon.png", fit: BoxFit.contain),
       ),
       title: _buildAppBarSubscribeBtn(),
       actions: [
@@ -779,10 +778,10 @@ class HomeState extends State<Home> {
                 child: Container(
                   constraints: const BoxConstraints(minHeight: 30),
                   decoration: Utils.setBGWithBorder(
-                    secondaryBgColor,
-                    transparent,
+                    _homeSurface,
+                    _homeBorder,
                     Dimens.menuRadius,
-                    0,
+                    1,
                   ),
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   child: ListView.separated(
@@ -795,9 +794,9 @@ class HomeState extends State<Home> {
                     physics: const BouncingScrollPhysics(),
                     padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                     separatorBuilder: (context, index) => Container(
-                      width: 1.5,
-                      margin: const EdgeInsets.fromLTRB(4, 10, 4, 10),
-                      decoration: Utils.setBackground(grayDark, 5),
+                      width: 1,
+                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      color: _homeBorder,
                     ),
                     itemBuilder: (BuildContext context, int index) {
                       if (index == 2) {
@@ -864,19 +863,22 @@ class HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              constraints: const BoxConstraints(minHeight: 35),
+              constraints: BoxConstraints(
+                minHeight: 35,
+                maxWidth: MediaQuery.sizeOf(context).width * 0.65,
+              ),
               decoration: Utils.setBGWithBorder(
-                secondaryBgColor,
-                transparent,
+                _homeGold,
+                _homeGold,
                 Dimens.menuRadius,
-                0,
+                1,
               ),
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
                 child: MyText(
-                  color: white,
+                  color: _homeBackground,
                   multilanguage: false,
                   text:
                       (sectionTypeList?[(homeProvider.selectedIndex)].name
@@ -905,7 +907,7 @@ class HomeState extends State<Home> {
                   height: 30,
                   width: 30,
                   decoration: BoxDecoration(
-                    color: secondaryBgColor,
+                    color: _homeSurface,
                     borderRadius: BorderRadius.circular(Dimens.menuRadius),
                   ),
                   padding: const EdgeInsets.all(10),
@@ -981,7 +983,8 @@ class HomeState extends State<Home> {
         /* Banner */
         if (!sectionDataProvider.loadingBanner &&
             sectionDataProvider.sectionBannerModel.status == 200 &&
-            sectionDataProvider.sectionBannerModel.result != null)
+            (sectionDataProvider.sectionBannerModel.result?.isNotEmpty ??
+                false))
           Container(
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.only(
@@ -991,11 +994,11 @@ class HomeState extends State<Home> {
               bottom: 12,
             ),
             child: MyText(
-              color: titleTextColor,
+              color: _homeGold,
               text: "for_you",
               textalign: TextAlign.start,
-              fontsizeNormal: 17,
-              fontweight: FontWeight.w600,
+              fontsizeNormal: 14,
+              fontweight: FontWeight.w700,
               fontsizeWeb: 19,
               multilanguage: true,
               maxline: 1,
@@ -1051,17 +1054,15 @@ class HomeState extends State<Home> {
         options: CarouselOptions(
           initialPage: 0,
           height: Dimens.getBannerHeight(context),
-          enlargeCenterPage: true,
-          enlargeFactor: 0.2,
-          enlargeStrategy: CenterPageEnlargeStrategy.scale,
+          enlargeCenterPage: false,
           enableInfiniteScroll: list.length > 1,
-          autoPlay: true,
+          autoPlay: list.length > 1,
           autoPlayCurve: Curves.easeInOutCubic,
           autoPlayInterval: Duration(milliseconds: Constant.bannerDuration),
           autoPlayAnimationDuration: Duration(
             milliseconds: Constant.animationDuration,
           ),
-          viewportFraction: 0.8,
+          viewportFraction: 1,
           padEnds: true,
           onPageChanged: (val, _) async {
             sectionDataProvider.setCurrentBanner(val);
@@ -1076,12 +1077,11 @@ class HomeState extends State<Home> {
               : (list[index].thumbnail ?? "");
           final isLive =
               (list[index].videoUploadType ?? "") == "live_stream_url";
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            clipBehavior: Clip.antiAliasWithSaveLayer,
+          return Material(
+            color: _homeSurface,
+            clipBehavior: Clip.antiAlias,
             child: InkWell(
               focusColor: white,
-              borderRadius: BorderRadius.circular(16),
               onTap: () {
                 openDetailPage(
                   list[index].id ?? 0,
@@ -1094,7 +1094,7 @@ class HomeState extends State<Home> {
                 fit: StackFit.expand,
                 children: [
                   /* Poster image */
-                  MyNetworkImage(imageUrl: imageUrl, fit: BoxFit.fill),
+                  MyNetworkImage(imageUrl: imageUrl, fit: BoxFit.cover),
                   /* Top gradient */
                   Container(
                     decoration: BoxDecoration(
@@ -1116,9 +1116,9 @@ class HomeState extends State<Home> {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
-                        end: Alignment.center,
+                        end: Alignment.topCenter,
                         colors: [
-                          black.withValues(alpha: 0.82),
+                          _homeBackground,
                           black.withValues(alpha: 0.70),
                           black.withValues(alpha: 0.50),
                           black.withValues(alpha: 0.28),
@@ -1137,9 +1137,9 @@ class HomeState extends State<Home> {
                   ),
                   /* Title + Metadata — bottom-left :: Action buttons — bottom-right */
                   Positioned(
-                    left: 14,
-                    right: 14,
-                    bottom: 10,
+                    left: 20,
+                    right: 20,
+                    bottom: 16,
                     child: Row(
                       children: [
                         Expanded(
@@ -1152,8 +1152,8 @@ class HomeState extends State<Home> {
                                     ? (list[index].name ?? "")
                                     : "-",
                                 textalign: TextAlign.start,
-                                fontsizeNormal: 24,
-                                fontsizeWeb: 26,
+                                fontsizeNormal: 30,
+                                fontsizeWeb: 32,
                                 fontweight: FontWeight.w800,
                                 multilanguage: false,
                                 maxline: 2,
@@ -1192,6 +1192,7 @@ class HomeState extends State<Home> {
                             ],
                             _buildBannerCircleBtn(
                               iconPath: "ic_play.png",
+                              primary: true,
                               onTap: () {
                                 openDetailPage(
                                   list[index].id ?? 0,
@@ -1296,7 +1297,7 @@ class HomeState extends State<Home> {
       fontsizeWeb: 14,
       fontweight: FontWeight.w500,
       multilanguage: false,
-      maxline: 5,
+      maxline: 1,
       overflow: TextOverflow.ellipsis,
       fontstyle: FontStyle.normal,
       isShadowText: true,
@@ -1306,20 +1307,24 @@ class HomeState extends State<Home> {
   Widget _buildBannerCircleBtn({
     required String iconPath,
     required VoidCallback onTap,
+    bool primary = false,
   }) {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(24),
       child: Container(
-        width: 42,
-        height: 42,
+        width: 48,
+        height: 48,
         decoration: BoxDecoration(
-          color: white.withValues(alpha: 0.20),
+          color: primary ? _homeGold : _homeSurface,
           shape: BoxShape.circle,
-          border: Border.all(color: white.withValues(alpha: 0.10), width: 1),
+          border: Border.all(color: primary ? _homeGold : _homeBorder),
         ),
         padding: const EdgeInsets.all(12),
-        child: MyImage(imagePath: iconPath, color: white),
+        child: MyImage(
+          imagePath: iconPath,
+          color: primary ? _homeBackground : white,
+        ),
       ),
     );
   }
@@ -1458,92 +1463,57 @@ class HomeState extends State<Home> {
     required int index,
     required Function()? onViewAllClick,
   }) {
-    return FittedBox(
-      child: Container(
-        padding: const EdgeInsets.only(left: 13, right: 13),
-        child: InkWell(
-          onTap: ((sectionList?[index].viewAll ?? 0) == 1)
-              ? onViewAllClick
-              : null,
-          borderRadius: BorderRadius.circular(3),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  if ((sectionList?[index].videoType ?? 0) ==
-                      Constant.channelType)
-                    Container(
-                      alignment: Alignment.centerRight,
-                      height: 17,
-                      width: 17,
-                      margin: const EdgeInsets.only(right: 2),
-                      child: MyImage(
-                        imagePath: "ic_fire.png",
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  if ((sectionList?[index].videoType ?? 0) ==
-                      Constant.shortsContentType)
-                    Container(
-                      alignment: Alignment.centerRight,
-                      height: 17,
-                      width: 17,
-                      margin: const EdgeInsets.only(right: 2),
-                      child: MyImage(
-                        imagePath: "ic_clips.png",
-                        fit: BoxFit.contain,
-                        color: colorAccent,
-                      ),
-                    ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    child: MyText(
-                      color: titleTextColor,
-                      text: sectionList?[index].title.toString() ?? "",
-                      textalign: TextAlign.start,
-                      fontsizeNormal: 15,
-                      fontweight: FontWeight.w600,
-                      fontsizeWeb: 17,
-                      multilanguage: false,
-                      maxline: 1,
-                      overflow: TextOverflow.ellipsis,
-                      fontstyle: FontStyle.normal,
-                    ),
-                  ),
-                  if ((sectionList?[index].viewAll ?? 0) == 1)
-                    Container(
-                      alignment: Alignment.centerRight,
-                      height: 20,
-                      margin: const EdgeInsets.only(left: 5, top: 2),
-                      padding: const EdgeInsets.all(5),
-                      child: MyImage(
-                        imagePath: "ic_viewall.png",
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                ],
-              ),
-              if ((sectionList?[index].shortTitle.toString() ?? "").isNotEmpty)
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: MyText(
-                    color: descTextColor,
-                    text: sectionList?[index].shortTitle.toString() ?? "",
-                    textalign: TextAlign.start,
-                    fontsizeNormal: 12,
-                    fontweight: FontWeight.w400,
-                    fontsizeWeb: 16,
-                    multilanguage: false,
-                    maxline: 1,
-                    overflow: TextOverflow.ellipsis,
-                    fontstyle: FontStyle.normal,
+    final section = sectionList?[index];
+    final subtitle = section?.shortTitle ?? '';
+    final canViewAll = section?.viewAll == 1 && onViewAllClick != null;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(14, 4, 14, 4),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  section?.title ?? '',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    color: white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
-            ],
+                if (subtitle.isNotEmpty)
+                  Text(
+                    subtitle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Color(0xFFB8B4BC),
+                      fontSize: 12,
+                    ),
+                  ),
+              ],
+            ),
           ),
-        ),
+          if (canViewAll)
+            TextButton(
+              onPressed: onViewAllClick,
+              child: MyText(
+                color: _homeGold,
+                multilanguage: true,
+                text: 'viewall',
+                fontsizeNormal: 12,
+                fontsizeWeb: 12,
+                fontweight: FontWeight.w600,
+                maxline: 1,
+                overflow: TextOverflow.ellipsis,
+                textalign: TextAlign.center,
+                fontstyle: FontStyle.normal,
+              ),
+            ),
+        ],
       ),
     );
   }
@@ -1759,7 +1729,7 @@ class HomeState extends State<Home> {
               child: LinearPercentIndicator(
                 padding: const EdgeInsets.all(0),
                 barRadius: const Radius.circular(2),
-                lineHeight: 4,
+                lineHeight: 5,
                 percent: Utils.getPercentage(
                   (sectionDataList?[index].episode != null)
                       ? (sectionDataList?[index].episode?.videoDuration ?? 0)
@@ -1767,7 +1737,7 @@ class HomeState extends State<Home> {
                   sectionDataList?[index].stopTime ?? 0,
                 ),
                 backgroundColor: secProgressColor,
-                progressColor: colorPrimary,
+                progressColor: _homeGold,
               ),
             ),
           ],
@@ -1783,6 +1753,7 @@ class HomeState extends State<Home> {
       layout: ContentCardLayout.landscape,
       showScrollArrows: false,
       horizontalPadding: 14,
+      cardRadius: 14,
       onItemTap: (datum, index) {
         printLog("Clicked on index ==> $index");
         openDetailPage(
@@ -1803,6 +1774,7 @@ class HomeState extends State<Home> {
       layout: ContentCardLayout.indexLandscape,
       showScrollArrows: false,
       horizontalPadding: 14,
+      cardRadius: 14,
       onItemTap: (datum, index) {
         printLog("Clicked on index ==> $index");
         openDetailPage(
@@ -1821,6 +1793,7 @@ class HomeState extends State<Home> {
       layout: ContentCardLayout.bigLandscape,
       showScrollArrows: false,
       horizontalPadding: 14,
+      cardRadius: 14,
       onItemTap: (datum, index) {
         printLog("Clicked on index ==> $index");
         openDetailPage(
@@ -1841,6 +1814,7 @@ class HomeState extends State<Home> {
       layout: ContentCardLayout.portrait,
       showScrollArrows: false,
       horizontalPadding: 14,
+      cardRadius: 14,
       onItemTap: (datum, index) {
         printLog("Clicked on index ==> $index");
         openDetailPage(
@@ -1861,6 +1835,7 @@ class HomeState extends State<Home> {
       layout: ContentCardLayout.bigPortrait,
       showScrollArrows: false,
       horizontalPadding: 14,
+      cardRadius: 14,
       onItemTap: (datum, index) {
         printLog("Clicked on index ==> $index");
         openDetailPage(
@@ -1881,6 +1856,7 @@ class HomeState extends State<Home> {
       layout: ContentCardLayout.indexPortrait,
       showScrollArrows: false,
       horizontalPadding: 14,
+      cardRadius: 14,
       onItemTap: (datum, index) {
         printLog("Clicked on index ==> $index");
         openDetailPage(
@@ -1899,6 +1875,7 @@ class HomeState extends State<Home> {
       layout: ContentCardLayout.square,
       showScrollArrows: false,
       horizontalPadding: 14,
+      cardRadius: 14,
       onItemTap: (datum, index) {
         printLog("Clicked on index ==> $index");
         openDetailPage(
